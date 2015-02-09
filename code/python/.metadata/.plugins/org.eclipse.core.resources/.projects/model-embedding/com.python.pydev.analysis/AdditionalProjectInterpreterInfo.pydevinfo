@@ -1,0 +1,27 @@
+-- VERSION_4
+-- START DISKCACHE
+/home/mkoenig/model-embedding/code/python/.metadata/.plugins/org.eclipse.core.resources/.projects/model-embedding/com.python.pydev.analysis/v2_indexcache
+embedding.ModelDictionary|1423476078000|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/ModelDictionary.py
+embedding.TransformHepatoCore|1423477826000|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/TransformHepatoCore.py
+embedding.__init__|1423475649000|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/__init__.py
+-- END DISKCACHE
+-- START DICTIONARY
+2
+2=embedding.ModelDictionary
+1=embedding.TransformHepatoCore
+-- END DICTIONARY
+-- START TREE 1
+9
+!<m|0|
+che|1|check_sbml!10@
+cur|1|current!11@
+doc|1|doc!11@
+err|1|errors!11@
+glu|2|gluconet!19@gluconet!11@
+hep|2|hepatocore!19@hepatocore!11@
+m|1|m!11@
+mai|0|
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

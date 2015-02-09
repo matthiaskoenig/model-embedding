@@ -1,0 +1,13 @@
+'''
+Reads the HepatoCore model and applies the transformation to the model so that 
+valid SBML which can be used for FBA simulations and model matching.
+
+* create proper compartments
+* assign species and reactions to compartments
+* fix naming of ids
+* validate the SBML model
+
+
+@author: mkoenig
+@date: 2015-02-09
+'''

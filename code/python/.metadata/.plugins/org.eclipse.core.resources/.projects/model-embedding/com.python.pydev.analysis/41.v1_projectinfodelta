@@ -1,0 +1,9 @@
+INSTUPembedding.TransformHepatoCore
+/home/mkoenig/model-embedding/code/python/model-embedding/embedding/TransformHepatoCore.py
+INFOS:&&3|1|2|0&&3|3|2|0&&2|4|2|0&&3|5|2|0&&3|6|2|0
+hepatocore=3
+gluconet=1
+doc=5
+m=6
+check_sbml=4
+embedding.TransformHepatoCore=2

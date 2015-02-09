@@ -1,0 +1,16 @@
+'''
+Read the model identifier from the SBML for model matching.
+
+
+@author: mkoenig
+@date: 2015-02-09
+'''
+
+# Read the GlucoNet and HepatoCore model
+
+gluconet = "data/GlucoNet.xml"
+
+
+
+if __name__ == "__main__":
+    print 'Hello World'
