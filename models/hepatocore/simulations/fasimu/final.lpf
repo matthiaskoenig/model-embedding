@@ -1,0 +1,7 @@
+end
+set emphasis mip 4
+set mip limits nodes 50000
+set clocktype 2
+set timelimit 300
+opt
+d so v -

@@ -1,0 +1,89 @@
+#########	 minimal exchange set		################################
+('13886_blood_circulation', '+', 'urea can be exported'),
+('15523_blood_circulation', '+', 'urate can be exported'),
+('13809_blood_circulation', '+', 'acetoacetate can be exported'),
+('13810_blood_circulation', '+', 'acetone can be exported'),
+('13832_blood_circulation', '+', 'beta-hydroxybutyrate can be exported'),
+('14035_blood_circulation', '+', 'H2S export for cysteine degradation'
+
+
+('15668_blood_circulation', '=', 'lactate can imported or exported'),
+('13640_blood_circulation', '=', 'CO2 extern not balanced'),
+('14769_blood_circulation', '=', 'acetate not balanced'),
+
+('13638_blood_circulation', '-', 'O2 uptake'),
+('14148_blood_circulation', '=', 'glucose uptake'),
+('15924_cytosol', '+', 'glycogen storage'),
+('14250_blood_circulation', '-', 'folate uptake'),
+
+
+
+# essential amino acids
+# Eight amino acids are generally regarded as essential for humans: phenylalanine, valine, threonine, tryptophan, isoleucine, methionine, leucine, and # # lysine.[3] Additionally, cysteine (or sulphur-containing amino acids), tyrosine (or aromatic amino acids), histidine and arginine are required by # infants and growing children.
+
+('14614_blood_circulation', '-', 'phenylalanine'),
+('14028_blood_circulation', '-', 'valine'),
+('13868_blood_circulation', '-', 'threonine'),
+('14082_blood_circulation', '-', 'trypthophan'),
+('15249_blood_circulation', '-', 'isoleucin'),
+('13695_blood_circulation', '-', 'methionine'),
+('14832_blood_circulation', '-', 'leucin'),
+('14958_blood_circulation', '-', 'lysine'),
+
+
+
+# volles Austauschset
+# all aminoacids
+# nucleotides
+#('13885_blood_circulation', '-', 'arginine for urea cycle can be imported'),
+('13948_blood_circulation', '-', 'uridine uptake'),
+('14258_blood_circulation', '-', 'cytidine uptake'),
+('15327_blood_circulation', '-', 'guanosine uptake'),
+('13981_blood_circulation', '-', 'adenosine uptake'),
+
+# non essential amino acids
+('13885_blood_circulation', '-', 'arginine'),
+('13663_blood_circulation', '-', 'alanine'),
+('13795_blood_circulation', '-', 'cysteine'),
+('13704_blood_circulation', '-', 'serine'),
+('13787_blood_circulation', '-', 'histidine'),
+('13781_blood_circulation', '-', 'tyrosine'),
+('14131_blood_circulation', '-', 'glycine'),
+('14215_blood_circulation', '-', 'proline'),
+('15065_blood_circulation', '-', 'asparagine'),
+('14072_blood_circulation', '-', 'aspartate'),
+('13649_blood_circulation', '-', 'glutamine'),
+('13650_blood_circulation', '-', 'glutamate'),
+-ID_13885_blood_circulation
+-ID_13663_blood_circulation
+-ID_13795_blood_circulation
+-ID_13704_blood_circulation
+-ID_13787_blood_circulation
+-ID_13781_blood_circulation
+-ID_14131_blood_circulation
+-ID_14215_blood_circulation
+-ID_15065_blood_circulation
+-ID_14072_blood_circulation
+-ID_13649_blood_circulation
+-ID_13650_blood_circulation
+
+
+# NADH
+=ID_13622_mitochondrial_matrix
+=ID_13620_mitochondrial_matrix
+=ID_13623_mitochondrial_matrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

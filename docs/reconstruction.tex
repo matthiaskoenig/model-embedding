@@ -1,0 +1,261 @@
+\chapter{Metabolische Netzwerkrekonstruktion}
+\label{reconstruction}
+\section{Einleitung}
+\subsection{Netzwerkrekonstruktion}
+Die mathematische Modellierung metabolischer Reaktionsnetzwerke ist ein zentraler Bereich der Systembiologie. Ein erster Schritt ist hierfür, die Rekonstruktion des betrachteten Netzwerks und die Aufstellung der zugehörigen stöchiometrischen Matrix.\\
+Die metabolische Netzwerkrekonstruktion besteht aus der Sammlung aller relevanten Prozesse (v.a. Reaktionen und Transporter) und der beteiligten Metabolite des Systems, sowie aus der Zuordnung zu den verschiedenen Kompartimenten. Im Zuge der Rekonstruktion werden Informationen zu Genen, Proteinen und die durch diese ermöglichten Prozesse in den Kontext eines biochemischen Netzwerks integriert.\\
+Die Verfügbarkeit sequenzierter und annotierter Genome, sowie der Fortschritt in Hochdurchsatzverfahren in Genomics, Metabolomics und Proteomics in Kombination mit einer enormen Menge an wissenschaftlicher Literatur hat die Rekonstruktion von metabolischen Netzwerken vieler Organismen ermöglicht \cite{Boelling2009, Duarte2004, Heinemann2005, Feist2007}.\\
+Mit dem rekonstruierten Netzwerk können mittels Methoden wie der Flussbilanzanalyse (FBA) Flussverteilungen simuliert und Einsichten in die Funktionalität des Netzwerks gewonnen werden \cite{Francke2005} (Kap.~\ref{fba}). Basierend auf der topologischen Struktur können Netzwerkeigenschaften mit graphentheoretischen Methoden untersucht werden (Small World Eigenschaften \cite{Albert2005, Khanin2006},  Suche von Netzwerkmotiven und Regulationsstellen \cite{Stelling2002})
+\cite{Lacroix2008}. Weiterhin wird durch die Rekonstruktion eine Plattform geschaffen um 'omics' Daten zu analysieren und visualisieren.
+
+\subsection{Leber und Hepatozyt}
+Die menschliche Leber besitzt viele unterschiedliche Funktionen, die von Detoxifizierung, Synthese von Plasmaproteinen wie Albumin und Fibrinogen, Galleproduktion, Cholesterolsynthese bis zur Ammoniakentgiftung reichen. Die Leber hat eine wesentliche Rolle im Aminosäure-, Protein-, Lipid-, und Lipoprotein- und v.a. auch im Kohlenhydratstoffwechsel \cite{Kuntz2006} und bildet eine zentrale metabolische Schaltstelle, die die Energieversorgung des Organismus sicherstellt (insbesondere die Glucoseversorgung).\\
+Hepatozyten sind der Hauptzelltyp der Leber und machen 80~\% des Lebervolumens und ungefähr 60-65~\% der Gesamtzellzahl der Leber aus \cite{Kuntz2006}. Die metabolische Leistung der Leber wird von den Hepatozyten erbracht.
+
+\subsection{Rekonstruktion Kernhepatozyt}
+\label{reconstruction_hepatocyte}
+Die Rekonstruktion konzentrierte sich daher auf die zentralen Stoffwechselwege und Funktionalität der Leber:
+\small
+\begin{itemize}
+ \item Glycolyse und Gluconeogenese  
+ \item Glykogenstoffwechsel
+ \item Pentosephosphatweg (PPP)
+ \item Purin- und Pyrimidinstoffwechsel 
+ \item Citratzyklus (TCA)
+ \item Fettsäuresynthese und $\beta$-Oxidation 
+ \item Aminosäuremetabolismus 
+ \item Gluthation und Folat Reaktionen 
+ \item $\text{NH}_3$ Fixierung und Detoxifizierung 
+ \item Ketonkörpersynthese 
+\end{itemize}
+\normalsize
+Die Rekonstruktion war eingebunden in die Rekonstruktion des gesamten humanen Hepatozytenmetabolismus \cite{Boelling2009}.
+
+% Methoden der Rekonstruktion (Wie wurde diese durchgeführt %
+\section{Methoden}
+Ausgangspunkt der Netzwerkrekonstruktion war eine Reaktionsliste basierend auf KEGG pathway maps \cite{Kanehisa2000}, welche das initiale Netzwerk bildete. Durch einen iterativen Prozess der Validierung, Beseitigung von Inkonsistenzen, Netzwerkerweiterung und Auswertung von FBA Simulationen wurde diese Reaktionsliste zu einem funktionellen Netzwerk (Abb.~\ref{fig: proposal}). Die Kuratierung erfolgte sowohl auf Ebene der isolierten Netzwerkobjekte, als auch durch Betrachtung der Einzelobjekte im Netzwerkkontext.
+
+\subsection{Validierung Netzwerkobjekte}
+Ausgehend von der anfänglichen Netzwerkrekonstruktion wurde eine systematische Validierung aller Netzwerkelemente mittels Literaturrecherche und Integration vorhandener Datenbankinformationen durchgeführt. Dabei wurden unter anderem KEGG \cite{Kanehisa2000}, Reactome \cite{Matthews2009}, MetaCyc (HumanCyc) \cite{Caspi2009}, BRENDA \cite{Chang2009}, GeneDB \cite{Hertz-Fowler2004} und UniProt \cite{Consortium2009} verwendet.\\
+Reaktionen und Transporter, für die keine Evidenz im humanen Hepatozyten vorhanden ist, wurden entfernt. Prozesse, die nicht Teil des Netzwerks sind, für die aber Evidenz vorhanden war, wurden hinzugefügt. Inkonsistenzen wurden beseitigt und sichergestellt, dass alle Elemente des Netzwerks korrekt und akkurat annotiert sind.\\
+Im Zuge dieser individuellen Überprüfung wurden auch die Reaktionsstöchiometrien und Massenbilanz aller Prozesse kontrolliert.
+
+\subsection{Validierung im Netzwerkkontext}
+Neben der Validierung auf Ebene der isolierten Netzwerkobjekte, wurde auch Validierung im Netzwerkkontext betrieben.\\
+So wurden alle Dead End Metabolite (Metabolite, die nur an einem Prozess beteiligt sind) analysiert und in das Netzwerk integriert. Hierzu wurden unter anderem Reaktionen und Transporter, die die Dead End Metabolite mit dem übrigen Netzwerk verbinden kuratiert und bei vorhandener Evidenz in das Netzwerk aufgenommen.\\
+Die in der Literatur beschriebenen Synthese- und Abbauwege von Aminosäuren, Purinen, Pyrimidinen, Glucose, Harnstoff müssen in dem Netzwerk realisierbar sein. Fehlende Reaktionen und Transporter wurden integriert, damit die beschriebenen Reaktionsfolgen in dem Netzwerk enthalten sind.\\
+Weiterhin wurden in jedem Iterationsschritt der Rekonstruktion FBA Simulationen zur funktionellen Validierung durchgeführt.
+Hierdurch konnten Probleme, wie fehlende und falsche Reaktionen und Kompartimentzuordnung, beseitigt werden (Kap.~\ref{fba}).
+
+\begin{landscape}
+\begin{figure}[htp]
+ \centering
+ \includegraphics[width=600pt,keepaspectratio=true]{./2_reconstruction/figures/proposal_final.png}
+\caption{Schrittweise Erweiterung der Reaktionsliste zu einem funktionellen Netzwerk. A) Liste von Objekten, die Bestandteil der Rekonstruktion sind (grün). B) Erweiterung über Inferenz (gelb) der beteiligten Metabolite  C) Erweiterung des Netzwerks um mögliche Kandidatenprozesse und -metabolite (rot) D) Nur Kandidaten, mit ausreichender Evidenz werden dem Netzwerk hinzugefügt. Validierung erfolgt auf Ebene der Einzelobjekte und mittels netzwerkbasierten Methoden wie Dead End Analyse und FBA.}
+\label{fig: proposal}
+\end{figure}
+\end{landscape}
+
+\section{Ergebnis}
+Teil dieser Arbeit war die Rekonstruktion des humanen Hepatozyten Kernstoffwechsels. Das Netzwerk wurde funktionell mittels FBA Rechnungen validiert. Die abgeschlossene Rekonstruktion besteht aus 766 Netzwerkobjekten, die in Tab.~\ref{tab: reconstruction} aufgeschlüsselt sind. Das Netzwerk ist in der Lage über 100 vorgegebene FBA Zielstellungen erfolgreich zu realisieren (Kap.\ref{fba}). Eine Netzwerkübersicht ist in Abb.~\ref{fig: reconstruction1} u. ~\ref{fig: reconstruction2} dargestellt.\\
+Das Gesamtnetzwerk wurde zur Untersuchung verschiedener Fragestellungen mittels FBA verwendet (Kap.~\ref{fba}) und das Teilnetzwerk der Glykolyse, Gluconeogenese und des Glykogenstoffwechsels kinetisch modelliert (Kap.~\ref{kinetic_model}).
+\small
+\begin{table}[h]
+\begin{tabular}{l r l}
+\toprule
+\textit{Netzwerkobjekte} & 766 & \footnotesize{(100)}\\
+\textit{Prozesse} & 402 & \footnotesize{(52.5)}\\
+\midrule
+\textit{Reaktionen} & 296 & \footnotesize{(38.6)}\\
+\hspace*{5mm}Einmalige Reaktionen & 274 & \\
+\hspace*{5mm}Zytosol & 243 & \footnotesize{(31.7)}\\
+\hspace*{5mm}Mitochondrium & 53 & \footnotesize{(6.9)}\\
+\midrule
+\textit{BlackboxEvents} & 24 & \footnotesize{(3.1)}\\
+\hspace*{5mm}Zytosol & 7 & \footnotesize{(0.9)}\\
+\hspace*{5mm}Mitochondrium & 14 &\footnotesize{(1.8)}\\
+\hspace*{5mm}Innere Mitochondrien Membran & 3 & \footnotesize{(0.4)}\\
+\midrule
+\textit{Transportreaktionen} & 82 & \footnotesize{(10.7)}\\
+\hspace*{5mm}Zytosol $\leftrightarrow$ Blut & 48 & \footnotesize{(6.3)} \\
+\hspace*{5mm}Zytosol $\leftrightarrow$ Mitochondrium & 34 & \footnotesize{(4.4)}\\
+\midrule
+\textit{Metabolite} & 364 & \footnotesize{(47.5)}\\
+\hspace*{5mm}Einmalige Metabolite & 199 & \\
+\hspace*{5mm}Zytosol & 245 & \footnotesize{(32.0)}\\
+\hspace*{5mm}Mitochondrium & 79 & \footnotesize{(10.3)}\\
+\hspace*{5mm}Blut & 40 & \footnotesize{(5.2)}\\
+\bottomrule
+\end{tabular} 
+\label{tab: reconstruction}
+\caption{Übersicht der Netzwerkrekonstruktion des humanen Hepatozyten Kernmetabolismus. Aufschlüsselung der Netzwerkobjekte mit Angabe von absoluten Zahlen (prozentualem Anteil). Einmalige Metabolite und Reaktionen sind Netzwerkobjekte, die nur in einem der Kompartimente vorkommen. BlackboxEvents sind Zusammenfassung von Reaktionsschritten zu einem Ersatzprozess. Beispielsweise der Fettsäureabbau durch $\beta$-Oxidation, in dem die Fettsäure unter Bildung von $\text{NADH}$, $\text{FADH}_2$ und Acetyl-CoA schrittweise um 2C-Atome verkürzt wird. Der BlackboxEvent betrachtet nur den Gesamtabbau der Fettsäure zu Acetyl-CoA unter Speicherung eines Teils der Energie in Form reduzierter Reduktionsäquivalenten .}
+\end{table}
+\normalsize
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=400pt,keepaspectratio=true]{./2_reconstruction/figures/left.png}
+ \caption{Übersicht des humanen Hepatozyten Kernstoffwechsels. [a] Glykolyse und Gluconeogenese, [b] Pentosephosphatweg, [c] TCA, [d] Harnstoffzyklus, [e] Purinmetabolismus, [f] Pyrimidinmetabolismus, [g] Ketonkörper [h] Aminosäuremetabolismus [i] Proteinmetabolismus}
+ \label{fig: reconstruction1}
+\end{figure}
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=400pt,keepaspectratio=true]{./2_reconstruction/figures/right.png}
+ \caption{Zytosol [grün], Mitochondrium [blau], mitochondriale Membran [hellblau], Plasmamembran [orange], Blut [rot]; Metabolit [Kreis], Reaktion [Rechteck], Transport [abgerundets Rechteck], BlackboxEvent [Raute]; Kanten zu den Kofaktoren sind nicht eingezeichnet. Abbildung in hoher Auflösung und Cytoscape Datei unter \textit{http://www.charite.de/sysbio/people/koenig/diploma}.}
+ \label{fig: reconstruction2}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+Für das Verständnis, wie die Leber in der Lage ist, diese Vielzahl unterschiedlicher Aufgaben zu erfüllen, muss zunächst der Stoffwechsel des zentralen Zelltyps der Leber verstanden werden. Und um ein Verständnis des Gesamthepatozytenstoffwechsels zu gewinnen, muss zunächst die Kernfunktionalität verstanden werden.
+
+\subsubsection{Kontrolle der beschriebenen Umsetzungen über Zwischenreaktionen (Pfadanalyse)}
+Die in der Literatur beschriebenen Umsetzungen von Substraten zu Produkten über angegebene Zwischenreaktionen müssen auch so in dem Netzwerk enthalten sein. Wenn beispielsweise beschrieben wird, dass Metabolit $A$ über eine Zwischenreaktion $r_{k}$ in Metabolit $B$ umgewandelt wird, dann muss auch ein erlaubter Pfad von $A$ nach $B$ über $r_k$ existieren. Erlaubter Pfad heisst, dass die Reaktionen $r_1, ...r_{k-1}, r_{k+1}, r_n$ alle von den Irreversibilitätskriterien in der Reaktionrichtung die für die Umsetzung von $A$ nach $B$ notwendig ist möglich sind. 
+
+
+Das rekonstruierte Netzwerk soll dabei in der Lage sein die charakteristische Kernfunktionaliät eines Hepatozyten zu zeigen. Beispielsweise soll der rekonstruierte Hepatozyt seine Rolle in der Blutglucosehomöostase mittels Gluconeogenese, Glykolyse und des Glykogenstoffwechsels erfüllen oder Ammoniakdetoxifizierung über die Reaktionen des Harnstoffzyklus leisten können.\\
+Bezüglich der Kernaufgaben und Kernstoffwechselwege soll das Netzwerk konsistent und in sich abgeschlossen sein, d.h. die Reaktionen die für diese Funktionalitäten notwendig sind, werden vollständig integriert. Das Netzwerk ist an Verzweigungspunkten zu anderen Stoffwechselwegen, wie z.B. Entgiftung, Cholesterolsynthese oder auch Lipidsynthese über Ersatzprozesse (FluxObjects) abgeschlossen oder durch Ersatzprozesse zusammengefasst (BlackboxEvent), die eine spätere Erweiterung des Netzwerks ermöglichen. \\
+
+\subsubsection{Behandlung von Dead ends}
+Dead ends sind Metabolite, die an nur einem Prozess beteiligt sind. Diese sind ein starker Hinweis darauf, dass Reaktionen oder Transporter, die den Metaboliten verwenden in dem Netzwerk fehlen oder die in dem Netzwerk vorhandene Reaktione, die den Dead End Metaboliten erzeugt evt. falsch Teil des Netzwerks ist. 
+
+\subsection{Erweiterung des Netzwerks}
+An vielen Stellen werden zusätzliche Prozesse benötigt um Probleme in der Netzwerkrekonstruktion zu beseitigen. Beispielsweise um einen Dead End Metaboliten, der wichtiger Bestandteil des Netzwerks ist vollständig in das Netzwerk zu integrieren. Hierzu müssen zusätzliche Prozesse eingeführt werden, die den Metaboliten verwenden.\\
+Einige der Dead ends können auch von Bedeutung für das Netzwerk sein. Beispielsweise die Creatinkinase, die Creatinphospphat als Energiespeicher erzeugt.
+\subsubsection{Kandidatenreaktionen}
+Zum Füllen der Lücken wurde das Konzept der Kandidatenreaktionen verwendet. Kandidatenreaktionen sind Reaktionen die Teil des Netzwerks sein könnten. Für eine Kandidatenreaktion müssen alle an dem Prozess beteiligten Metabolite in entsprechenden Kompartments vorliegen. Eine Reaktion ist eine Kandidatenreaktion für die Netzwerkerweiterung, wenn alle Edukte und Produkte der Reaktion in einem Kompartment vorhanden sind und die Reaktion noch nicht Teil des Netzwerks ist. Als mögliche Kandidatenreaktionen kommen alle KEGG Reaktionen in Frage. Für die Kandidaten wird eine oben beschriebene Einzelprozessvalidierung durchgeführt und die Reaktion entweder in das Netzwerk aufgenommen, oder in dem Netzwerk verboten.
+
+
+Obwohl eine Rekonstruktion des humanen Metabolismus bereits veröffentlicht wurde \cite{Duarte2007}, unterscheiden sich die einzelnen Zelltypen gravierend in ihrer enzymatischen Austattung und ihren metabolischen Fähigkeiten. Eine Zelltyp- / gewebespezifische Rekonstruktion ist unumgänglich für die Modellierung.\\
+Die humane Gesamtrekonstruktion kann in Kombination mit gewebsspezifischer Expression als Ausgangspunkt einer  gewebespezifischen Rekonstruktion fungieren \cite{Shlomi2008}. Allerdings ersetzt diese nicht eine manuelle Netzwerkrekonstruktion basierend auf Orginalliteratur, da einerseits für viele der Reaktionen und Transporter, für die eindeutige biochemische Evidenz vorhanden ist, die notwendigen Transkriptionsdaten für die Methode nicht vorhanden sind \cite{Boelling2009} und darüberhinaus oftmals die Korrelation zwischen Enzymaktivität und der Transkriptionshäufigkeit sehr schwach ist \cite{Boelling2009}.\\ 
+Die Rekonstruktion war eingebunden in die Rekonstruktion des gesamten humanen Lebermetabolismus \cite{Boelling2009}. 
+
+
+\subparagraph{Literatur}
+Für die Rekonstruktion wurde v.a. Orginalliteratur und Textbücher verwendet. Für sämtliche Reaktionen wurde eine Literaturrechereche die die in der Literatur vorhandenen Informationen für die Rekonstruktion verwendet. Auf Grund der Einschränkung der Rekonstruktion auf die Kernstoffwechselwege ist die Datenlage für die Reaktionen in Homo sapiens recht gut.\\
+
+\subsection{Netzwerkobjekte}
+Das rekonstruierte metabolische Netzwerk besteht aus folgenden Objekten:
+\small
+\begin{description}
+\item [Metabolit]
+\item[Reaktion] Umwandlung von Edukten in Produkte, gegebenenfalls irreversibel.
+\item[Transport] Transportprozess, über Kompartmentgrenze, beispielsweise Glucoseimport durch GLUT2.
+
+\item[BlackboxEvent] Prozesse, die Edukte in Produkte umwandeln, aber nicht von einem einzelnen Enzyme katalysiert werden. BlackboxEvents können zusammenfassung von Einzelreationen sein (so z.B. E1, E2, E3 Komplexe der Pyruvatedehydrogenase [PDH] zu einem BlackboxEvent PDH). Alternativ werden auch spontan stattfindende chemische und nicht biochemisch katalysiere Reaktionen als BlackboxEvent behandelt. Beispielsweise chemische Gleichgewichte wie das Bicarbonatgleichgewicht.
+
+BlackboxEvents fassen dabei komplexe Reaktionsfolgen, zum Teil ganze Stoffwechselwege in einer einfachen Ersatzreaktion zusammen, mit der man die Belastung des Systems durch den entsprechenden Stoffwechselweg simulieren kann und als vereinfachte Ersatzprozesse dienen, die später erweitert werden können.
+BlackboxEvents sind Reaktionen und transporter, die komplexe Reaktionsfolgen zusammenfassen. Hierdurch können diese Prozesse, die nicht exakt beschrieben werden sollen, doch im Netzwerk berücksichtigt werden. 
+Diese BlackboxEvents können, falls eine exakte Beschreibung in dem Modell notwendig wird, durch die entsprechenden Einzelprozesse und -reaktionen ersetzt werden. Ein Beispiel ist der Fettsäureabbau durch $\beta$-Oxidation im Mitochondrium. Dies ist ein iterativer prozess, indem die Fettsäure unter Bildung von NADH und FADH2, sowie Acetyl-CoA schrittweise um 2C-Atome verkürzt wird. Der Ersatzprozess betrachtet nur den Gesamtabbau der Fettsäure zu Acetyl-CoA unter Speicherung eines Teils der Energie in Form von reduzierten Reduktionsäquivalenten. 
+
+
+\item[FluxObject] FluxObjects bilden das Interface zum restlichen nicht im Modell berücksichtigten Metabolismus. Diese beschreiben die Verzweigungspunkte von Metaboliten, die in anderen Stoffwechselwegen genutzt werden. So wird Acetyl-CoA neben der Fettsäuresyntehse und der Einspeisung in den Citratzyklus z.B. auch für die Cholesterolsynthese verwendet. Diese ist nicht Teil des Netzwerks. Der mögliche Abfluss des Acetyl-CoA wird allerdings über das eingeführte FluxObject berücksichtigt und durch setzten von Flusswerten für diesen Abfluss kann die Belastung der Zelle z.B. in der Cholesterolsynthese im Modell simuliert werden. 
+\end{description}
+\normalsize
+
+ In dieser ersten Phase werden Inkonsistenzen beseitigt und sichergestellt, dass alle Elemente des Netzwerks korrekt und akkurat annotiert sind.
+
+
+ Da die Rekonstuktion auf die Kernstoffwechselwege beschränkt wurde ist hier die Datenlage sehr gut und zu einem Großteil der Prozesse in dem Netzwerk existiert ausreichend Orginalliteratur. Ausgangspunkt für die Literaturrecherche war dabei falls vorhanden die in KEGG annotierten EC Nummern der Reaktionen, mit denen in Brenda zunächst nach Literatur für das menschliche Protein, das die Reaktion katalysiert, recherchiert wurde. Weiterhin wurde PubMed nach geeigneter Literatur für den Prozess in menschlichen Hepatozyten herangezogen.
+Bei den Textbüchern wurde v.a auf die standard Biochemiebücher Lehninger und Loeffler zurückgegriffen, aber auch spezialisierte Nachschlagewerke wie ... verwendet.
+
+\subsection{Datenmanagement - HepatoCore}
+Als Platform für die Integration der Informationen und flexible Erstellung von Netzwerken wurde das WebInterface HepatoCore entwickelt, welches die Rekonstruktion, die Arbeit mit den Netzwerken und die FBA Simulationen unterstützte. Hier wurden die Informationen zu den Netzwerkobjekten abgelegt.
+Durch Integration der Visualisierung und der Informationen zu den Netzwerkobjekten wurde die Kuration extrem beschleunigt.
+
+Für die Rekonstruktion wurde die Toolbox HepatoCore entwickelt, welche die Integration der gesammelten Informationen, die flexible Erstellung von Netzwerken und die Visualisierung der Netzwerke ermöglichte, sowie die Schnittstelle von der Rekonstruktion zur Modellierung und den Simulationen bildete.
+
+\subsubsection{Visualisierung als Hilfsmittel}
+Die Visualisierung des Netzwerks offenbarte viele Schwachstellen in der anfänglichen Rekonstruktion. Durch die Visualisierung der Flussmoden traten weitere Probleme zu tage die sukkzessive entfernt wurden. Beispielsweise in Abb.\{ }
+
+\end{comment}
+
+%Neben der Verifikation der Netzwerkelemente auf Objectebene, d.h. ist diese Reaktion oder dieser Transporter Teil des Hepatozytennetzwerks werden in dieser zweiten Stufe auch system-biologische Informationen für die Rekonstruktion verwendet und die einzelnen Objecte im Netzwerkkontext bewertet.\\
+
+%Man muss die reine Sammlung von Information über die jeweiligen Reaktionen, transporter und Prozesse trennen von der eigentlichen Modellbildung. Aus der knowledgebase von Informationen über die einzelprozessen, wird ein Modell erzeugt, welchen funktionellen Charakter haben soll. Dieses unterscheidet sich zum Teil von der reinen Knowledgebase, da die Informationslage für die unterschiedlichen Elmente in dem Netzwerk doch sehr unterschiedlich sind. 
+
+
+%Hierdurch werden Inkonsistenzen beseitigt und sichergestellt, dass alle Elemente des Netzwerks korrekt und akkurat annotiert sind. So ist beispielsweise FAD ein fest an das Enzym gebundener Kofaktor, der in der reduzierten FADH2 Form Elektronen auf anderen Kofaktoren, wie z.B. Ubiquinone übertragen kann. Er tritt aber nicht als freier Metabolit im Reaktionsnetzwerk auf. Daher müssen die Reaktionen, die FADH2 verwenden durch Ersatzprozesse (BlackboxEvent) ersetzt werden, die den wirklichen Sachverhalt in der Zelle beschreiben.\\
+%Hierbei wurde auch Sichergestellt, dass die Massenbilanz für alle Prozesse stimmt, d.h. keine Elemente aus dem nichts entstehen, oder im nichts verschwinden. Die Summe aller chemischer Elemente auf der Eduktseite des Prozesses muss der Summe der chemischen Elemente auf der Produktseite entsprechen. Dadurch kann nicht in Zyklen Materie entstehen oder vernichtet werden.\\
+%Für sämtlich Reaktionen wird recherchiert, welche Evidenz für das Vorhandensein im menschlichen Hepatozyten gefunden werden kann. TODO: Beschreibung Literaturreherche
+
+
+
+%\subsubsection{Netzwerkeigenschaften - Analyse des rekonstruierten Netzwerks}
+%Übersicht über die statistischen Größen des Netzwerks. Welche Eigenschaften hat der resultierende Graph. Welches sind die Hauptkofaktoren. Welche Rolle spielt die Kompartimentierung?\\
+%Analyse mittels statistischer Graphenmasse: Degree, degree distribution, ... Zusätzlich zur reinen Übersichtstabelle noch Auswertung des rekonstruierten Netzwerks. Was kann man erkennen. Grapheneigenschaften des Netzwerks: Gradverteilung, Vernetzung, Hubs, Clustering Coefficients, kürzeste Wege.
+\begin{comment}
+
+\paragraph{Reaktionen mit unterschiedlichen Kofaktoren oder Substraten}
+Viele Reaktionen sind mit unterschiedlichen Kofaktoren möglich. Auch diese Reaktionen mit unterschiedlichen Kofaktoren können mittels der kandidatenreaktionen untersucht werden. 
+NADH <-> NADPH (<-> FADH2)\\
+GTP <-> ATP <-> UTP <-> CTP <-> ITP\\
+GDP <-> ADP <-> UDP <-> CDP <-> IDP\\
+GMP <-> AMP <-> UMP <-> CMP <-> IMP\\
+
+Control if Brenda entry with this alternative Cofactor exist.
+Control of all reactions with alternative substrates in modell.
+
+\paragraph{Untersuchung Kandidatenreaktionen}
+Nach den ersten Runden der Netzwerkvalidierung wurden sämtliche Kandidatenreatkionen für das Netzwerk systematisch untersucht, ob diese in das Netzwerk aufgenommen werden sollten oder nicht. Dabei wurden 176 Reaktionen untersucht.
+ 
+22 Reaktionen wurden im Laufe der Untersuchung in das Kernnetzwerk aufgenommen. In den meisten Fällen handelte es sich dabei um Reaktionen, die auf keiner der KEGG maps verzeichnet waren, aber dennoch eine entscheidende Rolle im humanen Hepatozytenstoffwechsel spielen.\\
+Bei den meisten der 176 Reaktionen handelte es sich um Bakterienspezifische Reaktionen, die in Mammalia nicht auftreten. besonders die Reaktionen des NH3 Metabolism fielen dabei auf: 
+Bei Bakterien existieren viele NH3 bildende Reatkion (v.a. im Aminosäurestoffwechel und im Purin- und Pyrimidinmetabolismus). Dabei kann das NH3 in Bakterien fixiert werden. Im Menschen existieren dafür alternative transaminierende Reaktionen, die nicht mit Ammoniak ablaufen sondern v.a. mit Glutatmat.
+
+Zu den alternativen Kofaktoren:\\
+Der Hauptkofaktor ist ATP (ADP, AMP) mit Ausnahme des Purin- und Pyrimidinstoffwechsels. NAD wird wie erwartet hauptsächlich im Energiestoffwechsel verwendet, wohingegen NADP hauptsächlich in anabolischen Reaktionen auftritt. Allerdings existieren auch einige wenige Reaktionen, bei denen NADH und NADPH als Kofaktoren beschrieben sind.
+
+
+Durch die Flusssimulationen konnten einerseits irreversible Reaktionen erkannt werden, da Lösungen auftraten, die so nicht biologisch realisiert sind. Dies war v.a. allem beim Test zur Synthese der essentiellen Aminosäuren der Fall.
+Einerseits gehe ich kurz daruaf ein, welche Probleme mittels FBA beseitigt werden konnten. Wie die Rekonstruktion mit Hilfe der FBA verbessert werden konnte.
+Andererseits stelle ich einige der durchgeführten Simulationen mit der fertigen Rekonstruktion vor.
+Die Probleme, die durch die FBA beseitigt wurden, wurde im Rahmen der Netzwerkrekonstruktion vorgestellt. Hier möchte ich beispielhaft eineige der Simulationen zeigen und diskutieren.
+
+Zonierung
+Obwohl die Leber auf Stufe der Histology uniform ist, unterscheidet sie sich auf Morphometry und Histochemisch. Diese Heterogenität beruht auf auf der Blutversorgung der Zellen. Zellen im periportalen Bereich des Acinus unterscheiden sich von perivenösen Zellen in der Ausstattung mit Key enzymes, translocators, Rezeptoren und subzellularen Strukturen und haben daher unterschiedliche Funktionelle Kapazitäten \cite{Jungermann1996}. 
+Die Hepatozyten unterscheiden sich je nach Position im metabolic zonation (periportal und perivenious). 
+Glucoseabgabe mittels Glykogenabbau und Gluconeogenese, die Utilization von Aminosäuren und die Ammoniakdetoxifizierung, Gallensäuresynthese und die Synthese bestimmter Plasmaproteine wie Albumin und Fibrinogen findet man v.a. periportal, wohingegen die Verwendung der Glucose, der Xenobiotic Metabolismus hauptsächlich im perivenösen Teil zu finden sind.
+Die morphologische und funktionelle Heterogenität ist eine Folge von zonalen Unterschiedn in der Expression von Proteinen, die unter anderem durch Sauerstoffgradienten, gradienten in Substraten und Hormonen bewirkt werden \cite{Jungermann1996}.
+
+
+%Die Rekonstruktion kann den vollständigen Metabolismus eines Organismus umfassen, wie beispielsweise die Rekonstruktion des menschlichen Metabolismus \cite{Duarte2007} oder aber auch, die viel speziellere Rekonstruktion eines Zelltyps innerhalb eines Organismus darstellen, wie beispielsweise der Stoffwechsel des menschlichen Hepatozyten \cite{Boelling2009}.
+
+%Auf 1g Leber kommen 171 Millionen Hepatozyten. 
+
+%Hydrophile Nahrungsbestandteile wir Glucose und die Aminosäuren, sowie Elektrolyte, wasserlösliche Vitamine und viele Medikamente werden in den Blutkreislauf durch Aufnahme durch den intestine in die mesentenic veins, die in die portal vein münden und nach dem Durchgang durch die Leber in die inferior vena cava gelangen.
+%Lipophile Nahrungsbestandteile, wie Fettsäuren und lipidlösliche Vitamine gelangen v.a. in die superior vena cava \cite{Jungermann1996}
+
+%Die Leber, die durch die portal vein (ca. 80~\% des Flusses) und die hepatic artery (ca. 20~\%) versorgt wird hat daher eine entscheidende Position für die Verwendung hydrophiler Nahrungskomponenten (nutrients), da sie zwischen intestine, welcher die Nahrung absorbiert, und alle übrigen Organe, die diese Nahrungskomponenten verwerten, geschaltet ist. Im Bezug auf die Verwendung lipophiler Substanzen ist die Leber mit den anderen Organen gleichgestellt, da in der Zirkulation parallel zu allen anderen Organen geschaltet ist \cite{Jungermann1996}.
+
+%Aus dieser strategischen Lage ergibt sich auch die Rolle der Leber als zentrale metabolische Schnittstelle und die enorme Anzahl unterschiedlicher Leberfunktionen. Die Nahrungsaufnahme, sowie die Nahrungszusammensetzung varieren sehr stark, sowie auch die Belastung des Organismus, die zwischen Ruhe und starker Aktivität variieren kann. Dennoch muss der Organismus konstant versorgt werden. Die Leber ist für die Bluthomöostase verantwortlich, was sich besonders deutlich im Fall der Glucose zeigt.
+
+
+%Bei der Rekonstruktion des humanen Hepatozyten Kernmetabolismus wurde der top-down Ansatz praktiziert. Der Umfang und die Funktionalität des Netzwerks sind klar umrissen und die Netzwerkgröße liegt im Vergleich zu genome-scale Netzwerken im überschaubaren Bereich (~ 400 Prozesse). Ein funktionelles Netzwerk war die Hauptzielstellung, welche durch die top-down Methode deutlich schneller erreicht werden kann. Weiterhin ist die vorhandene Infrastruktur in der Arbeitsgruppe (Metannogen \cite{Gille2007}) eher für den top-down als den bottom-up Ansatz ausgelegt, da hier an metabolische Prozesse (Reaktionen und Transporter) zusätzliche Informationen annotiert werden. Bei genome-scale Netzwerken wird dagegen zumeist der bottom-up Ansatz gewählt (z.B.[ \cite{Duarte2007} ]).
+
+
+\end{comment}

@@ -1,0 +1,587 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% & ERGEBNISSE & %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ergebnisse}
+Die FBA Simulationen waren ein wesentliches Hilfsmittel, die Rekonstruktion des Hepatozytennetzwerks in einem iterativen Prozess zu verbessern. Dabei lieferten die Simulationsergebnisse basierend auf einem Rekonstruktionsstand eine Fülle zusätzlicher Informationen, die wieder in die Rekonstruktion einflossen (Kap.~\ref{reconstruction}).\\
+Die Simulationen wurden weiterhin dazu verwendet, die abgeschlossene Rekonstruktion zu validieren und die funktionelle Kapazität des aufgestellten Modells des Hepatozytenstoffwechsels aufzuzeigen. \\
+Die Ergebnisse der Simulationen gehen weit über eine reine Validierung hinaus, da die Flusslösungen nicht nur aufzeigen, dass das Hepatozytenmodell eine Aufgabe erfüllen kann, sondern auch die konkrete Flussverteilung für die untersuchte Aufgabe liefern. Das Modell besitzt prediktiven Charakter, da ausgehend von den getesteten Basisfunktionalitäten komplexere Aufgaben getestet werden können.
+
+Während der Rekonstruktion und für die abschließende funktionelle Validierung wurden über 100 verschiedene Simulationen durchgeführt, die das komplette Spektrum der erwarteten Funktionalität des Kernhepatozyten umfassten (Kap.~\ref{reconstruction_hepatocyte}):
+\small
+\begin{itemize}
+ \item Glykolyse ausgehend von unterschiedlichen Substraten (Glucose, Fructose, Glycerol, Glykogen)
+ \item Gluconeogenese ausgehend von unterschiedlichen Substraten (Laktat, Alanin, Pyruvat, Oxalacetat, Glycerol)
+ \item Glykogenspeicherung ausgehend von unterschiedlichen Substraten (Laktat, Glucose, Alanin, Glycerol, Oxalacetat)
+ \item Glykogenabbau
+ \item Pentosephosphatweg (Synthese von Ribose-5P und NADPH)
+ \item Bereitstellung zytosolischer und mitochondrialer Energie in Form von ATP und Reduktionspotential (NADH und NADPH) ausgehend von unterschiedlichen Substraten
+ \item Energieversorgung unter aeroben und anaeroben Bedingungen
+ \item Synthese der nicht-essentiellen Aminosäuren aus minimalem Austauschset
+ \item Katabolismus sämtlicher Aminosäuren mittels minimalem Austauschset
+ \item Purin- und Pyrimidinsynthese (ATP, GTP, UTP, CTP) aus minimalem Austauschset
+ \item Purin- und Pyrimidinabbau mittels minimalem Austauschset
+ \item Fettsäuresynthese (C16 Palmitat) aus Acetyl-CoA
+ \item $\beta$-Oxidation (C16 Palmitat)
+ \item Ethanolabbau mit minimalem Austauschset
+ \item Ammoniakentgiftung (Harnstoffzyklus, Glutaminsynthese) unter aeroben und anaeroben Bedingungen und verschiedenen Austauschsets
+ \item Ketonkörpersynthese (Acetoacetat, $\beta$-Hydroxybutyrat, Aceton) ausgehend von Acetyl-CoA
+ \item Synthese eines Beispielproteins (Proalbumin) aus verschiedenen Austauschsets
+\end{itemize}
+\normalsize
+Eine detaillierte Auflistung sämtlicher Simulationen ist in Tab.~\ref{fba_simulations_table} angegeben.
+ 
+Bei der Auswertung der Simulationen wurde zunächst getestet, ob die vorgegebene Aufgabe erfüllt werden konnte: Existieren also Flusslösungen, die die gestellten Zielflüsse mit den in der Simulation mit dem Blut austauschbaren Metaboliten erfüllen können. Im Fall von Negativsimulationen wurde das Gegenteil geprüft: Existieren gerade keine solche Flusslösungen. Negativsimulationen sind beispielsweise die Synthese der essentiellen Aminosäuren, die im Hepatozytenmodell nicht möglich sein sollten.\\
+Falls eine Flusslösung existierte, erfolgte eine detaillierte Auswertung, wie die jeweilige Funktionalität mittels der optimalen Flusslösung realisiert wurde. Hierzu wurden sämtlicher Simulationen visualisiert und die anschließende Analyse umfasste:
+\begin{itemize}
+ \item verwendete Reaktionen und Transporter
+ \item Verteilung der Flüsse auf mögliche alternative Stoffwechselwege, Verhalten an Verzweigungspunkten im Netzwerk
+ \item zwischen Kompartimenten und mit der Umgebung ausgetauschten Metabolite (Import, Export), Pfade, die importierte Metabolite mit exportierten Metaboliten verbinden
+ \item Energiebilanz (ATP, NADH, NADPH)
+ \item Plausibilität der Lösung (Übereinstimmung mit Literatur und beschriebenen Reaktionsfolgen für untersuchte Funktionalität)
+ \item mögliche Artefakte der Flussminimierung
+\end{itemize}
+Während der Netzwerkrekonstruktion führten die daraus gewonnenen Informationen zu Änderungen an dem Netzwerk, zu zusätzlichen ergänzenden Simulationen oder zur Einführung neuer Zusatzbedingungen für die FBA (insbesondere Irreversibilitäten).
+
+In der abgeschlossenen Rekonstruktion werden sämtliche Simulationen auf dem Kernhepatozytenmodell erfolgreich durchgeführt. Die durch die Simulationen definierte Funktionalität kann vollständig erfüllt werden. Die auftreten Flusslösungen sind biochemisch plausibel und nahezu alle Reaktionsfolgen, die in den Lösungen verwendet wurden, um eine gegebene Funktionalität zu erfüllen, sind so in der Literatur beschrieben.
+
+Im Folgenden werden einige dieser Simulationen auf dem rekonstruierten Kernhepatozytenmodell vorgestellt. Für die Diskussion wurden Simulationen ausgewählt, die inhaltlich stark mit dem kinetischen Modell von Glykolyse, Gluconeogenese und Glykogenstoffwechsel überlappen. Dies sind aerobe und anaerobe Verwendung der Glucose, die Untersuchung des Pentosephosphatwegs und die Analyse der Gluconeogenese ausgehend von unterschiedlichen Substraten.\\
+In diesen Simulationen wird nur ein relativ kleiner Teil des rekonstruierten Modells für die Flusslösungen genutzt. In anderen Simulationen, wie der Synthese von Proalbumin, ist das Netzwerk in weit größerem Umfang ausgelastet, da hier unter anderem zunächst die nicht-essentiellen Aminosäuren aus dem minimalen Austauschset synthetisiert werden müssen, bevor diese in der Proteinsynthese verwendet werden können.
+
+\subsection{Sauerstoffabhängige Glucoseverwertung} 
+\paragraph{Abkürzungen}
+\small
+\textbf{GK} Glucokinase,
+  \textbf{PFK} Phosphofructokinase,
+  \textbf{PGK} Phosphoglyceratkinase,
+  \textbf{PK} Pyruvatkinase,
+  \textbf{OXP} oxidative Phosphorylierung,
+  \textbf{LDH} Laktat Dehydrogenase,
+  \textbf{PDH} Pyruvat Dehydrogenase,
+  \textbf{GAPDH} Glyceraldehyde 3-phosphate Dehydrogenase,
+  \textbf{MDH} Malat Dehydrogenase,
+  \textbf{ANT} Adeninenucleotide Carrier
+  \normalsize
+
+In der Glykolyse wird die aufgenommene Glucose zu Pyruvat oxidiert. Unter anaeroben Bedingungen ist der oxidative Abbau der Glucose damit abgeschlossen. Das entstehende Pyruvat kann weiter zu Laktat reduziert oder für andere pyruvatabhängige Reaktionen verwendet werden.
+
+Unter aeroben Bedingungen kann die Glucose dagegen vollständig zu $\text{CO}_2$ und $\text{H}_2\text{O}$ oxidiert werden. Pyruvat wird durch PDH zu Acetyl-CoA. Die Acetyl-Gruppe des Acetyl-CoA wird im Citratzyklus vollständig zu $\text{CO}_2$ oxidiert, die dabei entstehenden Energie wird in Form der reduzierten elektronenübertragenden Kofaktoren NADH und $\text{FADH}_2$ gespeichert. In der Atmungskette werden diese unter der Abgabe von Protonen und Elektronen wieder in die oxidierte Form überführt.\\
+Durch den Elektronentransfer in der Atmungskette kann ein Großteil der Energie mittels oxidativer Phosphorylierung in Form von ATP gespeichert werden, wobei $\text{O}_2$ als terminaler Elektronenakzeptor in der Atmungskette benötigt wird. 
+
+Im Hepatozytenmodell wurde die oxidative Phosphorylierung mit festem P/O Quotienten implementiert. Dabei können durch den Protonen- und Elektronentransport können ausgehend vom NADH 2.3 ATP, ausgehend von $\text{FADH}_2$ (Succinat Dehydrogenase) 1.4 ATP erzeugt werden
+\footnote{
+Der P/O Quotient bzw. P/2$e^-$ Quotient $x$ gibt an, wie viel ATP pro Sauerstoffatom bei der Einspeisung der Elektronen in die Atmungskette erzeugt werden kann:
+\begin{equation*}
+ x \text{ADP} + x \text{P}_i + \frac{1}{2} \text{O}_2 + \text{H}^+ + \text{NADH} \rightarrow x \text{ATP} + \text{H}_2\text{0} + \text{NAD}^+
+\end{equation*}
+Die Messung von Protonenflüssen ist auf Grund der Pufferkapazität für Protonen im Mitochondrium, nichtproduktiver Leckströme über die innere Membran und die Verwendung des Protonengradienten für alternative Funktionen, wie beispielsweise den sekundär aktiven Transport von Substraten, schwierig \cite{Nelson2008}.\\
+Der zumeist verwendete Wert für die Anzahl an gepumpten Protonen pro Elektronenpaar ist 10 Für NADH und 6 für Succinat. Der am weitesten akzeptierte Wert für die Anzahl an Protonen, die für die Synthese eines ATP Moleküls benötigt werden ist 4, wovon ein Proton für den Transport von $\text{P}_i$, ATP und ADP über die innere Mitochondrienmembran verwendet wird \cite{Nelson2008}. Wenn 10 Protonen pro NADH gepumpt werden und 4 Protonen in die Matrix fließen müssen, um ein ATP zu erzeugen, dann ergibt sich ein protonenbasierte P/O Quotient von 2.5 für NADH und 1.5 (6/4) für Succinat \cite{Nelson2008}. 
+
+In den Simulationen wurden die P/O Werte etwas niedriger mit 2.3 für NADH und 1.4 für $\text{FADH}_2$ angesetzt, da unter zellulären Bedingungen sicher nicht die optimale Kopplung von Reduktionsenergie an die ATP Synthese möglich ist. Weiterhin existieren Leckströme und Transportprozesse, die in dem Modell nicht berücksichtigt sind.}.
+
+Mit diesen Stöchiometrien liefert die vollständige Oxidation eines Glucosemoleküls theoretisch maximal 29.8 ATP pro Glucose \cite{Nelson2008}, da in der Glykolyse eines Glucosemoleküls zu Pyruvat 2 ATP und 2 NADH entstehen und weitere 2 ATP (bzw. GTP), 8 NADH und 2 $\text{FADH}_2$ bei der vollständigen Oxidation der 2 Pyruvatmoleküle im Citratzyklus gebildet werden.
+
+\paragraph{Pasteureffekt}
+Der Pasteureffekt ist zu beobachten, wenn eine fakultativ anaerobe Zelle mit Sauerstoff versorgt wird. Als Folge wird der Durchsatz durch die Glykolyse deutlich gedrosselt. Die Zelle kann mit Hilfe des Sauerstoffs weit mehr Energie aus der Glucose gewinnen, als ohne Sauerstoff. Durch die vollständige Oxidation von Glucose wird deutlich mehr ATP pro Glucose produziert, deutlich weniger Glucose ist daher für die Energieversorgung unter aeroben Bedingungen notwendig. Neben dem geringeren Fluss durch die Glykolyse wird zusätzlich die Produktion von Laktat gestoppt.
+
+\paragraph{Simulationen}
+In den FBA Simulationen wurde der Glucoseabbau zur Energieversorgung in Abhängigkeit vom vorhandenen Sauerstoff untersucht. Als Zielfluss wurde in allen Simulationen die Bereitstellung zytosolischen ATPs definiert.
+Glucose konnte aus dem Blut importiert werden, Laktat und $\text{CO}_2$ konnten an das Blut abgegeben werden.\\
+Zunächst wurden eine anaerobe Simulation (keine Sauerstoffaufnahme aus dem Blut möglich, $v_{0_2}=0$) und eine Simulation unter aeroben Bedingungen (Sauerstoff konnte unbegrenzt aufgenommen werden) durchgeführt. Der Sauerstofffluss \footnote{Alle angegebenen Flüsse sind Relativflüsse zum jeweiligen Zielfluss der Simulation von 1 µmol/min/kg und daher einheitenlos. Fluss ist bezogen auf Gesamtleber und kg Körpergewicht.} der aeroben Flusslösung betrug dabei $v_{0_2}=0.201$.\\
+In zusätzlichen Simulationen wurde der Sauerstofffluss $v_{0_2}$ anschließend schrittweise zwischen der anaeroben und vollständig aeroben Flusslösung variiert.\\
+Eine Übersicht der durchgeführten Simulationen, der ATP Bilanz und wichtiger Flüsse ist in Tabelle \ref{tab: o2_simulation} angegeben. 
+
+\begin{landscape}
+\begin{table}[htp]
+\centering
+\tiny
+\begin{tabular}{l rrr rrr rrr rrr}
+\toprule
+ & \textbf{Anaerob [0]}& \textbf{0.02} &\textbf{0.04} & \textbf{0.06} & \textbf{0.08} & \textbf{0.1} & \textbf{0.12} & \textbf{0.14}
+ & \textbf{0.16} & \textbf{0.18} & \textbf{0.2} & \textbf{Aerob [0.201]}\\
+\midrule
+ATP Zielfluss & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+ATP / Glucose & 2 & 2.2 & 2.45 & 2.77 & 3.18 & 3.73 & 4.5 & 5.69 & 7.73 & 12.05 & 27.27 & 29.8\\
+ &  &  &  &  &  &  &  &  &  &  &  & \\
+\textit{ATP Erzeugung Mitochondrium} &  &  &  &  &  &  &  &  &  &  &  & \\
+\hspace*{5mm}Oxidative Phosphorylierung [OXP] & 0 & 0.086 & 0.172 & 0.258 & 0.344 & 0.430 & 0.516 & 0.602 & 0.688 & 0.774 & 0.860 & 0.866\\
+\hspace*{5mm}Succinat CoA Ligase (ATP) & 0 & 0.007 & 0.013 & 0.020 & 0.027 & 0.033 & 0.040 & 0.047 & 0.053 & 0.060 & 0.067 & 0.067\\
+ &  &  &  &  &  &  &  &  &  &  &  & \\
+\textit{ATP Transport [Mitochondrium → Zytosol]} &  &  &  &  &  &  &  &  &  &  &  & \\
+\hspace*{5mm}Adeninenucleotide Carrier [ANT] & 0 & 0.093 & 0.185 & 0.278 & 0.371 & 0.463 & 0.556 & 0.649 & 0.741 & 0.834 & 0.927 & 0.933\\
+ &  &  &  &  &  &  &  &  &  &  &  & \\
+\textit{ATP Erzeugung Zytosol} &  &  &  &  &  &  &  &  &  &  &  & \\
+\hspace*{5mm}Phosphoglyceratkinase [PGK] &1 & 0.907 & 0.815 & 0.722 & 0.629 & 0.537 & 0.444 & 0.351 & 0.259 & 0.166 & 0.073 & 0.067\\
+\hspace*{5mm}Pyruvatkinase [PK] & 1 & 0.907 & 0.815 & 0.722 & 0.629 & 0.537 & 0.444 & 0.351 & 0.259 & 0.166 & 0.073 & 0.067\\
+ &  &  &  &  &  &  &  &  &  &  &  & \\
+\textit{ATP Verbrauch Zytosol} &  &  &  &  &  &  &  &  &  &  &  & \\
+\hspace*{5mm}Glucokinase [GK] & 0.5 & 0.454 & 0.407 & 0.361 & 0.315 & 0.268 & 0.222 & 0.176 & 0.129 & 0.083 & 0.037 & 0.034\\
+\hspace*{5mm}Phosphofructokinase [PFK] &0.5 & 0.454 & 0.407 & 0.361 & 0.315 & 0.268 & 0.222 & 0.176 & 0.129 & 0.083 & 0.037 & 0.034\\
+ &  &  &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  & \\
+\textit{Wichtige Flüsse }&  &  &  &  &  &  &  &  &  &  &  & \\
+\hspace*{5mm}Malat Dehydrogenase [MDH] Mitochondrium & 0 & 0.013 & 0.027 & 0.040 & 0.053 & 0.067 & 0.080 & 0.093 & 0.107 & 0.120 & 0.133 & 0.134\\
+\hspace*{5mm}Malat Dehydrogenase [MDH] Zytosol & 0 & 0.007 & 0.013 & 0.020 & 0.027 & 0.033 & 0.040 & 0.047 & 0.053 & 0.060 & 0.067 & 0.067\\
+\hspace*{5mm}Glucoseimport [GLUT2] & 0.5 & 0.454 & 0.407 & 0.361 & 0.315 & 0.268 & 0.222 & 0.176 & 0.129 & 0.083 & 0.037 & 0.034\\
+\hspace*{5mm}O2 Verbrauch & 0 & 0.02 & 0.04 & 0.06 & 0.08 & 0.1 & 0.12 & 0.14 & 0.16 & 0.18 & 0.20 & 0.201\\
+\hspace*{5mm}Laktat Export & 1 & 0.901 & 0.801 & 0.702 & 0.603 & 0.503 & 0.404 & 0.305 & 0.205 & 0.106 & 0.007 & 0.000\\
+\hspace*{5mm}Pyruvat Dehydrogenase [PDH] &0 & 0.007 & 0.013 & 0.020 & 0.027 & 0.033 & 0.040 & 0.047 & 0.053 & 0.060 & 0.067 & 0.067\\
+\bottomrule
+\end{tabular} 
+\caption{Glucose zur Energieversorgung unter unterschiedlichen Sauerstoffbedingungen: Synthese zytosolischen ATPs ausgehend von Glucose als Substrate unter verschiedenen Sauerstoffflüssen von anaerob (kein Sauerstoffimport möglich, $v_{O_2}=0$ bis vollständig aerob (Sauerstoffimport unbegrenzt möglich, $v_{O_2}=0.201$). Sämtliche Flüsse sind Relativflüsse bezüglich des ATP Zielflusses.}
+\normalsize
+\label{tab: o2_simulation}
+\end{table}
+\end{landscape}
+
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=440pt,keepaspectratio=true]{./2_reconstruction/figures/fba/o2_simulation/12.png}%{./2_reconstruction/figures/fba/o2_simulation/12_small.png}
+ \caption{Anaerobe Erzeugung von ATP aus Glucose ($v_{O_2}=0$): Die Glucose wird über die Glykolyse vollständig in Pyruvat umgewandelt. Pyruvat wird durch LDH vollständig in Laktat reduziert und anschließend exportiert. Nur die Reaktionen der Glykolyse und die LDH werden in der Flusslösung verwendet. Mitochondriale Reaktionen sind nicht Bestandteil der Flusslösung. Deutlich mehr Glucose als im aeroben Fall wird aufgenommen. Metabolit (Kreis), Reaktion (Rechteck), Transport (abgerundetes Rechteck); Blut (Rand rot), Plasmamembran (Rand orange), Zytosol (Rand grün), Mitochondrium (Rand blau), Mitochondrienmembran (Rand hellblau). Fluss tragende Reaktionen grün. Kanten zu Kofaktoren leicht transparent, Kanten ohne Fluss nur sehr schwach eingezeichnet.}
+ \label{fig: o2_anaerob}
+\end{figure}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=440pt,keepaspectratio=true]{./2_reconstruction/figures/fba/o2_simulation/05.png}%{./2_reconstruction/figures/fba/o2_simulation/05_small.png}
+ \caption{Erzeugung von ATP aus Glucose bei beschränktem Sauerstofffluss ($v_{O_2}=0.14$): Der verfügbare Sauerstoff wird vollständig für die oxidative Phosphorylierung verwendet. Die Lösung ist eine Kombination aus anaerober und aerober Flusslösung. Der Großteil des in der Glykolyse gebildeten Pyruvats wird durch LDH zu Laktat reduziert und ins Blut abgegeben. Das restliche Pyruvat wird zu Acetyl-CoA und dient mittels Citratzyklus und oxidativer Phosphorylierung zur ATP Synthese. ATP wird mittels ANT ins Zytosol transportiert. Das in der GAPDH entstehende NADH wird z.T. für die LDH verwendet, der Rest mittels Malatshuttle ins Mitochondrium transportiert. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: o2_restricted}
+\end{figure}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=440pt,keepaspectratio=true]{./2_reconstruction/figures/fba/o2_simulation/01.png}%{./2_reconstruction/figures/fba/o2_simulation/01_small.png}
+ \caption{Aerobe Erzeugung von ATP aus Glucose ($v_{O_2}=0.201$): Die aufgenommene Glucose wird vollständig zu Pyruvat, das im Citratzyklus vollständig zu $\text{CO}_2$ und $\text{H}_2\text{O}$ oxidiert wird. Laktat wird nicht gebildet. Das in der Glykolyse entstehende NADH (GAPDH) wird über den Malatshuttle in das Mitochondrium transportiert und in der oxidativen Phosphorylierung vollständig zur Erzeugung von ATP verwendet. Deutlich weniger Glucose als im anaeroben Fall muss aufgenommen werden. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: o2_aerob}
+\end{figure}
+
+\paragraph{anaerober Glucoseabbau}
+Die optimale Flusslösung zum anaeroben Glucoseabbau ist in Abb.~\ref{fig: o2_anaerob} dargestellt. In der Lösung werden nur die Reaktionen der Glykolyse, sowie LDH verwendet. Mitochondriale Reaktionen oder Transporter sind nicht Teil der Flusslösung. Das als Zielfluss vorgegebene ATP wird vollständig durch die beiden ATP erzeugenden Reaktionen der Glykolyse bereitgestellt, jeweils zu gleichen Teilen von PGK und PK.\\
+Das Pyruvat wird vollständig mittels LDH in Laktat umgewandelt und anschließend ins Blut exportiert. Die für die LDH benötigte Reduktionsenergie in Form von NADH wird in der GAPDH Reaktion bereitgestellt. Die LDH reoxidiert das reduzierte $\text{NAD}^+$, so dass die Glykolyse weiter ablaufen kann.\\
+Da ein Glucosemolekül beim anaerobem Abbau exakt 2 ATP erzeugt, müssen 0.5 Glucosemoleküle aufgenommen werden, um den ATP Zielfluss zu erfüllen. 
+
+\paragraph{aerober Glucoseabbau}
+Die optimale Flusslösung zum aeroben Glucoseabbau ist in Abb.~\ref{fig: o2_aerob} dargestellt. Die Reaktionen der Glykolyse werden verwendet, um die aufgenommene Glucose vollständig in Pyruvat umzusetzen. Das Pyruvat wird dann allerdings nicht zu Laktat wie im anaeroben Fall, sondern ins Mitochondrium transportiert und dort durch PDH zu Acetyl-CoA. Die Acetyl-Gruppe des Acetyl-CoA wird anschließend im Citratzyklus vollständig zu $\text{CO}_2$ und $\text{H}_2\text{O}$ oxidiert. Der aufgenommene Sauerstoff wird komplett für die oxidative Phosphorylierung in der Flusslösung verwendet.\\
+Beim aeroben Abbau der Glucose wird deutlich weniger Glucose (0.034) als im aeroben Fall (0.5) benötigt, um das ATP für den Zielfluss zu erzeugen. Mehr als 10 mal soviel Glucose muss bei fehlendem Sauerstoff aufgenommen werden.\\ 
+Aus einem Glucosemolekül können im aeroben Fall deutlich mehr ATP erzeugt werden, bei den in den Simulationen verwendeten P/O Quotienten maximal 29.8 ATP pro Glucosemolekül. Diese maximale ATP Produktion pro Glucose wird im aeroben Fall realisiert.\\
+Laktat wird im aeroben Fall nicht produziert. Unter anaeroben Bedingungen wird das Pyruvat zu Laktat reduziert, um NADH zu oxidieren, damit die Glykolyse weiter ablaufen kann. Die $NAD^+$ Menge der Zelle ist begrenzt, NADH muss reoxidiert werden, damit die GAPDH Reaktion weiter ablaufen kann. Im aeroben Fall ist dies nicht notwendig, da die Oxidation des NADH im Mitochondrium über die Atmungskette erfolgt. Daher wird auch kein Laktat produziert.\\
+Da keine Transporter für NADH in die mitochondriale Matrix existieren, muss das Reduktionspotential auf anderem Wege in das Mitochondrium gelangen. Dazu wird das Reduktionspotential von NADH auf Oxalacetat übertragen (MDH) und über den Malatshuttle ins Mitochondrium transportiert. Hier katalysiert die mitochondriale MDH die Umkehrreaktion und überträgt die Elektronen auf mitochondriales $\text{NAD}^+$, welches in der Atmungskette zur Erzeugung von ATP verwendet werden kann. Das entstehende ATP wird über ANT ins Zytosol transportiert. 
+
+Die deutlich höhere ATP Ausbeute pro Substrat beruht zum Großteil auf der vollständigen Oxidation des Pyruvats, wobei ein Teil der Energie in Form von ATP mittels oxidativer Phosphorylierung gespeichert werden kann. Einen weiteren Beitrag leistet das zytosolisch erzeugte NADH im aeroben Fall, da dieses ebenfalls ATP in der oxidativen Phosphorylierung erzeugen kann und nicht unter Laktatbildung im Zytosol regeneriert werden muss. 
+
+Deutlich sind die Unterschiede zwischen anaerober und aerober ATP Erzeugung basierend auf Glucose zu erkennen. Dabei unterscheiden sich v.a. das Schicksal des Pyruvat und damit verbunden auch die maximal pro Glucosemolekül erzeugbaren ATP. Alle im Pasteur Effekt beschriebenen Unterschiede zwischen aeroben und anaeroben Glucoseverwertung sind deutlich erkennbar: Der mehr als 10 mal größere Glucosebedarf im anaeroben Fall und der damit verbundene deutlich größere Fluss durch die Glykolyse. Laktat wird nur im anaeroben Fall abgegeben, im aeroben wird kein Laktat produziert.
+
+\paragraph{Variation des Sauerstoffflusses}
+Bei Variation des Sauerstoffflusses zwischen den aeroben und anaeroben Bedingungen wird in den Flusslösungen eine Kombination aus der beschriebenen aeroben und anaeroben Flusslösung realisiert (Abb.~\ref{fig: o2_restricted}). Je weniger Sauerstoff aufgenommen werden kann, desto mehr dominiert der anaeroben Lösungsanteil, je näher man dem maximalen Sauerstofffluss im aeroben Fall kommt, desto mehr ähnelt die Lösung der aeroben Lösung.
+
+\begin{figure}[!ht]
+ \centering
+ \includegraphics[width=\textwidth,keepaspectratio=true]{./2_reconstruction/figures/fba/o2_simulation/o2_simulation}
+ \caption{Abhängigkeit der Flüsse wichtiger Reaktionen vom aufgenommenen Sauerstoff: Die abgebildeten Flüsse hängen linear von der Sauerstoffaufnahme ab. Positive Korrelation besteht zwischen Sauerstofffluss und ANT, OXP, MDH (mitochondriale Matrix), SDH und PDH. Negative Korrelation zwischen Sauerstofffluss und PK, Laktat Export, GLUT2 und MDH (Zytosol).}
+ \label{fig: o2_simulation}
+\end{figure}
+
+In Abb.~\ref{fig: o2_simulation} sind die Flussdaten aus Tab.~\ref{tab: o2_simulation} graphisch dargestellt.
+Die Flüsse durch die Reaktionen hängen linear vom möglichen Sauerstofffluss ab.\\
+Der Sauerstofffluss korreliert positiv mit der oxidativen Phosphorylierung, der Succinat Dehydrogenase, dem Fluss durch die mitochondriale MDH und PDH, sowie dem Transport von ATP mittels ANT aus dem Mitochondrium ins Zytosol.\\
+Eine negative Korrelation besteht zwischen Sauerstofffluss und der aufgenommenen Glucose durch GLUT2, dem an die Blutbahn abgegebenen Laktat, dem Fluss durch die Pyruvatkinase sowie der zytosolischen MDH.\\
+Je mehr Sauerstoff zur Verfügung steht, desto größer ist der Fluss durch die oxidative Phosphorylierung. Durch die vollständige Oxidation der Glucose kann dadurch deutlich mehr ATP pro Glucose erzeugt werden. Diese wird zusammen mit dem in der Succinat CoA Ligase entstehenden ATP mittels ANT ins Zytosol transportiert. Um die identische  zytosolsche ATP Last zu bewältigen, muss daher deutlich weniger Glucose aufgenommen werden. Je mehr Sauerstoff vorhanden ist, desto weniger Laktat wird ausgeschieden, da einerseits deutlich weniger Glucose für die Energieversorgung abgebaut werden muss, also weniger Pyruvat produziert wird, andererseits ein größerer Anteil der Glucose vollständig zu $\text{CO}_2$ oxidiert wird.\\ 
+Die MDH (zytosolisch und mitochondrial) sind für den Transport der in der GAPDH erzeugten Reduktionsenergie (NADH) ins Mitochondrium als Teil des Malatshuttle Systems verantwortlich. Die negative Korrelation für das zytosolische Enzym erklärt sich dadurch, dass je mehr oxidative Phosphorylierung betrieben wird, desto weniger Glucose wird durch die Glykolyse geschleust und desto weniger zytosolisches NADH entsteht in der GAPDH. Daher muss auch weniger NADH über MDH und Malatshuttle ins Mitochondrium transportiert werden.
+
+Die linearen Abhängigkeiten der Flüsse vom Sauerstofffluss sind eine Folge der verwendeten FBA Methodik. Linearkombinationen von FBA Lösungen können wieder Lösungen sein, solange die Linearkombination der Lösungen mit allen FBA Bedingungen verträglich sind. Die Linearkombination erfüllt auf jeden Fall die Fliessgleichgewichtsbedingungen, aber auch die zusätzlichen Nebenbedingungen, wie obere Grenzen für Flüsse müssen erfüllt sein.\\
+Zwei alternative optimale Lösungen, um ATP von Glucose aus bereitzustellen sind mit den vorgegebenen Bedingungen realisierbar, eine optimal Lösung im anaeroben Fall und eine optimale Lösung im aeroben Fall. In der aeroben Lösung werden Sauerstoff und die oxidative Phosphorylierung zur ATP Erzeugung verwendet, in der anaeroben wird Glucose zu Laktat abgebaut.\\
+Die Sauerstoff abhängige Lösung ist bezüglich des Flussminimierungkriteriums besser, da für den Zielfluss ATP-Produktion deutlich geringere Glucoseflüsse in das System und durch die Glykolyse notwendig sind. Obwohl der vollständige Citratzyklus und die oxidative Phosphorylierung für die vollständige Oxidation von Glucose verwendet werden müssen und zusätzliche Transporter für ATP und Transport des NADH Reduktionspotentials notwendig sind, so ist diese Lösung immer noch bezüglich der Flussminimierung deutlich günstiger, da sehr viel ATP in der oxidativen Phosphorylierung entsteht.
+
+Die jeweilige Flusslösung in Abhängigkeit vom Sauerstofffluss ist eine Linearkombination dieser beiden Einzellösungen. Der vorhandene Sauerstoff wird vollständig für die ATP Erzeugung mittels oxidativer Phosphorylierung verwendet, da dies die bezüglich der gewählten Zielfunktion der Flussminimierung bessere Lösung ist. Das restliche ATP muss dann über den aufwändigeren anaeroben Lösungsanteil bereitgestellt werden.
+
+
+\paragraph{ATP pro Glucosemolekül}
+In Abb.~\ref{fig: o2_atp_pro_glucose} ist die Abhängigkeit der ATP Produktion pro Glucosemolekül vom möglichen Sauerstofffluss dargestellt. Die pro aufgenommenem Glucosemolekül erzeugt ATP Menge hängt hyperbolisch vom erlaubten Sauerstofffluss ab. Je mehr Sauerstoff für die oxidative Phosphorylierung vorhanden ist, desto weniger Glucose muss aufgenommen werden, um den selben ATP Bedarf zu decken. Aus den Simulationen ergibt sich:
+\begin{equation}
+ \text{ATP/Glucose} = (m_{GLUT2} v_{O_2} + c_{GLUT2})^{-1} = (-2.317 v_{O2} + 0.5)^{-1}
+\label{eq: atp_glucose}
+\end{equation}
+für $v_{O2} \in [0, 0.201]$.\\
+Bereits geringer Sauerstoffmangel führt zu einem deutlichen Abfall der gewinnbaren Energie aus Glucose. Ein Abfall um nur 7~\% des Sauerstoffflusses im Vergleich zur Optimalversorgung im aeroben Fall ($v_{O_2}=0.201$) führt zu einer Halbierung des erzeugten ATP ($v_{O_2, 0.5} = 0.187$). Bereits geringer Sauerstoffmangel kann zu einer extremen Belastung für Energiemetabolismus werden.\\
+
+\begin{figure}[!ht]
+ \centering
+ \includegraphics[width=\textwidth,keepaspectratio=true]{./2_reconstruction/figures/fba/o2_simulation/o2_atp_pro_glucose}
+\caption{ATP Produktion pro aufgenommener Glucose in Abhängigkeit von der Sauerstoffaufnahme aus dem Blut: Abgebildet sind die aus den Simulationen gewonnenen Daten, sowie Gleichung~\ref{eq: atp_glucose}.
+Je mehr Sauerstoff vorhanden ist, desto mehr ATP kann pro Glucosemolekül erzeugt werden.
+Unter anaeroben Bedingungen können 2 ATP pro aufgenommenem Molekül Glucose erzeugt werden. Bei vollständig aeroben Bedingungen, wenn das in der Glykolyse entstehende Pyruvat vollständig durch PDH und im Citratzyklus zu $\text{CO}_2$ und $\text{H}_2\text{O}$ oxidiert wird, werden durch oxidative Phosphorylierung fast 30 ATP pro Glucose erzeugt. Die Abhängigkeit vom Sauerstofffluss ist hyperbolisch. Die maximale ATP Menge bei vollständiger Oxidation der Glucose sind 29.8 ATP pro Glucose. 
+Dieses Maximum wird bei vollständige aeroben Bedingungen ($v_{O_2}=0.201$) erreicht. Der Halbmaximalwert der ATP Produktion pro Glucose ist $v_{O_2, 0.5} = 0.187$.
+}
+\label{fig: o2_atp_pro_glucose}
+\end{figure}
+
+\paragraph{Fazit}
+Deutlich sind in den Lösungen die Unterschiede im aeroben und anaeroben Abbau der Glucose zur ATP Versorgung der Zelle zu erkennen. Bei hypoxischen Bedingungen setzt sich die Flusslösung aus einer aeroben Flusslösungskomponente und einer anaeroben zusammen. Dabei sind die von bereits von Pasteur in Hefe beobachteten Effekte bei der Umstellung von aerober zu anaerober Glucoseverwertung deutlich erkennbar: Mehr als 10 mal mehr Glucose ist für die Energieversorgung der Zelle notwendig, weiterhin wird Laktat gebildet.\\
+Da über die vollständige Oxidation der Glucose in Kombination mit der oxidative Phosphorylierung deutlich mehr ATP pro Glucose erzeugt werden kann, als beim anaeroben Abbau der Glucose, kann bereits geringer Sauerstoffmangel zu einer großen Belastung für die Zelle werden. Deutlich mehr Glucose ist notwendig, um den identischen Energiebedarf zu decken.
+
+Die Lösungen sind biologisch und biochemisch plausibel. Sämtliche Teilaspekte der Lösungen wurden so in der biochemischen Standardliteratur bereits beschrieben. 
+
+
+\clearpage
+%%% Tests des PPP mittels NADPH und Ribose-5P %%%
+\subsection{Pentosephosphatweg [PPP]}
+\paragraph{Abkürzungen}
+  \small
+  \textbf{GK} Glucokinase,
+  \textbf{PFK} Phosphofructokinase,
+  \textbf{PGK} Phosphoglyceratkinase,
+  \textbf{PK} Pyruvatkinase,
+  \textbf{PDH} Pyruvat Dehydrogenase,
+  \textbf{GAPDH} Glyceraldehyde 3-phosphate Dehydrogenase,
+  \textbf{MDH} Malat Dehydrogenase,
+  \textbf{ANT} Adeninenucleotide Carrier
+  \textbf{RPI} Ribulose-5 Phosphate Isomerase 
+  \textbf{TKET} Transketolase
+  \textbf{TAL} Transaldolase 
+  \textbf{G6PHD} Glucose-6P Dehydrogenase
+  \textbf{6PGD} Phosphogluconate Dehydrogenase
+  \textbf{ICDH} Isocitrat Dehydrogenase
+  \textbf{FBP} Fructose-1,6 Bisphosphatase
+  \normalsize
+
+Der PPP wird in zwei Teilbereiche unterschieden \cite{Wamelink2008, Nelson2008}: 
+\begin{enumerate}
+ \item Ein oxidativer, irreversibler Teil, der Reduktionsenergie in Form von NADPH erzeugt, wobei Glucose-6P in Ribulose-5P und $\text{CO}_2$ umgewandelt wird.
+ \item Ein nicht-oxidativer reversibler Teil, der Zwischenprodukte der Glykolyse mit Pentosephosphaten verbindet.
+\end{enumerate}
+
+Einerseits hat der PPP die Aufgabe Ribose-5P für anabole Prozesse wie die Synthese von Purinen und Pyrimidinen bereitzustellen. Andererseits wird der PPP auch dazu genutzt, die hauptsächlich für reduktive Biosynthesen und oxidative Stressabwehr benötigte Reduktionsenergie in Form von NADPH bereitzustellen \cite{Nelson2008, Pollak2007}.
+
+In den Simulationen wurde getestet, ob das Hepatozytenmodell in der Lage ist ausgehend von Glucose diese unterschiedlichen Aufgaben zu erfüllen und wie diese unterschiedlichen Aufgaben realisiert wurden.
+
+\paragraph{Synthese von Ribose-5P}
+Für die Simulation zur Synthese von Ribose-5P wurde der Import von Glucose aus dem Blut erlaubt und Ribose-5P als Zielfluss aus dem System abgezogen. Weiterhin sind die Aufnahme von $\text{O}_2$ aus dem Blut und der Export von Laktat, Urea und $\text{CO}_2$ in die Umgebung möglich. Die Aufnahme von $\text{O}_2$ ist unbeschränkt möglich, die Simulationen finden unter aeroben Bedingungen statt. 
+
+Die optimale Flusslösung ist in Abb.~\ref{fig: 02_ribose_needed} dargestellt. Die in der Analyse verwendeten Flusswerte und prozentualen Angaben sind in Tab.~\ref{tab: ribose_nadph} angegeben.
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=400pt,keepaspectratio=true]{./2_reconstruction/figures/fba/ppp/02_ribose.png}%{./2_reconstruction/figures/fba/ppp/02_ribose_small.png}
+ \caption{Synthese von Ribose-5P im PPP: Der Großteil der aufgenommenen Glucose wird zu Ribose-5P umgewandelt. Ein kleiner Teil dient der Energieversorgung durch Umwandlung in Pyruvat und Einspeisung als Acetyl-CoA in den Citratzyklus. Der Hauptteil des benötigten zytosolischen ATP wird in der oxidativen Phosphorylierung erzeugt und über ANT ins Zytosol transportiert. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: 02_ribose_needed}
+\end{figure}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=400pt,keepaspectratio=true]{./2_reconstruction/figures/fba/ppp/04_NADPH_cyto.png}%{./2_reconstruction/figures/fba/ppp/04_NADPH_cyto_small.png}
+ \caption{Erzeugung von NADPH Reduktionspotential im PPP: Der Großteil der aufgenommenen Glucose wird im oxidativen Teil des PPP zu $\text{CO}_2$ oxidiert. Ein kleiner Teil der Glucose dient der Energieversorgung durch Umwandlung in Pyruvat und Einspeisung als Acetyl-CoA in den Citratzyklus. Der Hauptteil des ATP wird in der oxidativen Phosphorylierung erzeugt und über ANT ins Zytosol transportiert. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: 04_NADPH_cyto}
+\end{figure}
+
+In der Flusslösung wird Ribose-5P ausschließlich über den PPP erzeugt. Alternative Wege zur Ribose-5P, wie der Abbau von Purinen und Pyrimidinen, werden nicht verwendet. Die Lösung beschränkt sich auf den nicht-oxidative Teil des PPP, die Reaktionen des oxidativen Teils werden nicht verwendet.
+
+Zwei Drittel (67~\%) des Ribose-5P werden durch die RPI ausgehend von Ribulose-5P bereitgestellt. Das restliche Drittel (33~\%) stammt aus der TKET Reaktion. 
+
+Die aufgenommenen Glucose wird nahezu vollständig  (96.13~\%) zu Ribose-5P umgewandelt. Die restliche Glucose (3.87~\%) wird in der Glykolyse in Pyruvat umgewandelt, fließt anschließend als Acetyl-CoA in den Citratzyklus und wird vollständig zu $\text{CO}_2$ und $\text{H}_2{O}$ oxidiert. Mittels oxidativer Phosphorylierung wird ATP aus den reduzierten Reduktionsäquivalenten erzeugt. Nur ein sehr geringer Teil der Glucose muss unter aeroben Bedingungen für die Energieversorgung der Ribose-5P Synthese verwendet werden.
+
+Die in der oxidativen Phosphorylierung erzeugte Energie in Form von ATP ist notwendig für die aktivierenden Reaktionen des oberen Teils der Glykolyse.  Die GK benötigt 81.24~\% des verbrauchten ATP, die PFK die restlichen 18.76~\%.\\
+In der PFK wird nur ein Viertel des ATP der GK verbraucht, da Fructose-6P durch TKET und die TAL aus der Glykolyse abgezogen wird. Der verbleibende Fluss durch die PFK ist einerseits notwendig, um Glycerinaldehyd-3P für den PPP zu synthetisieren, andererseits für den Glykolysefluss zum Pyruvat.
+
+Das für die Ribose-5P Synthese notwendige ATP stammt nur zu einem sehr kleinen Teil aus dem zweiten Teil der Glykolyse (PGK und PK jeweils 6.29~\%), der Großteil der notwendigen ATP Energie kommt aus Citratzyklus und oxidativer Phosphorylierung (87.42~\%).\\
+Die Reaktionen des Malatshuttels transportieren die in der Glykolyse produzierte Reduktionsenergie (NADH in der GAPDH) in das Mitochondrium, wo dieses über die oxidative Phosphorylierung ATP erzeugt. Der Austausch von ATP und ADP zwischen Mitochondrium und Zytosol erfolgt über ANT. 
+
+Ribose-5P kann sehr einfach aus Glucose-6P im PPP synthetisiert werden. Der notwendige Energiebedarf wird dabei im aeroben Fall über die ATP Erzeugung mittels oxidative Phosphorylierung aus einem kleinen Teil der aufgenommenen Glucose gedeckt.
+\begin{table}[!ht]
+\begin{minipage}[c]{\textwidth}
+\centering
+\tiny
+\begin{tabular}{l rr rr}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Ribose-5P}} & \multicolumn{2}{c}{\textbf{NADPH}}\\
+\midrule
+ & Fluss & Fluss [\%] & Fluss & Fluss [\%] \\
+\cmidrule(l){2-5}
+\textit{ATP Bilanz}& & & & \\
+\hspace*{5mm}ATP Verbrauch Zytosol & -1.07 & -100 & -0.09 & -100\\
+\hspace*{5mm}Glucokinase [GK] & -0.867 & -81.24 & -0.0860 & -100\\
+\hspace*{5mm}Phosphofructokinase [PFK] & -0.200 & -18.76 & 0 & 0\\
+\hspace*{5mm}Phosphoglyceratkinase [PGK] & 0.067 & 6.29 & 0.0063 & 7.35\\
+\hspace*{5mm}Pyruvatkinase [PK] & 0.067 & 6.29 & 0.0063 & 7.35\\
+\hspace*{5mm}Oxidative Phosphorylierung [OXP] & 0.9329 & 87.42 & 0.073 & 85.29\\
+ &  &  &  & \\
+\textit{Glucose Flüsse} &  &  &  & \\
+\hspace*{5mm}Glucoseimport [GLUT2] & 0.867 & 100 & 0.086 & 100\\
+\hspace*{5mm}Glucoseverbrauch PPP & 0.833 & 96.13 & 0.083 & 96.32\\
+\hspace*{5mm}Glucose zu Pyruvat & 0.034 & 3.87 & 0.003 & 3.68\\
+\hspace*{5mm}Pyruvat Dehydrogenase [PDH] & 0.067 & 7.74 & 0.006 & 7.35\\
+ &  &  &  & \\
+\textit{Wichtige Flüsse} &  &  &  & \\
+\hspace*{5mm}Transaldolase [TALD] & -0.33 &  & 0.17 & \\
+\hspace*{5mm}Transketolase [TKET] & 0.33 &  & -0.17 & \\
+\hspace*{5mm}Ribose-5 Phosphate Isomerase [RPI] & -0.67 &  & -0.17 & \\
+\hspace*{5mm}Glucose-6 Phosphate Dehydrogenase [G6PDH]& 0 &  & 0.497 & \\
+\hspace*{5mm}Phosphogluconate Dehydrogenase [6PGD] & 0 &  & 0.497 & \\
+\hspace*{5mm}Isocitrat Dehydrogenase (NADPH) & 0 &  & 0.006 & \\
+\hspace*{5mm}Malic Enzyme & 0 &  & 0 & \\
+%\multicolumn{5}{l}{\footnotesize \textsuperscript{1}\,Footnote inside a table} \\
+\bottomrule
+\end{tabular} 
+
+\normalsize
+\label{tab: ribose_nadph}
+\caption{FBA Simulationen zum Pentosephosphatweg: ATP Bilanz und wichtige Flüsse der Simulationen mit Zielstellung Ribose-5P Synthese (s.~Abb.~\ref{fig: 02_ribose_needed}) und Bereitstellung von Reduktionspotential in Form von NADPH (s.~Abb.~\ref{fig: 04_NADPH_cyto}). In der ATP Bilanz werden die prozentualen Flüsse relativ zum jeweiligen ATP Verbrauch im Zytosol berechnet. ATP verbrauchende prozentuale Flüsse haben negative Vorzeichen, ATP produzierende positive. Die prozentualen Flüsse bei den Glucose Flüssen werden auf den jeweiligen Glucoseimport bezogen.}
+\end{minipage}
+\end{table}
+
+\paragraph{NADPH Reduktionsenergie}
+Der Bedarf an Reduktionsenergie in Form von NADPH wurde über einen Ersatzprozess, der Reduktionsenergie in Form von NADPH verwendet, modelliert. Als Zielfluss wurde der Fluss durch diesen Ersatzprozess auf 1 gesetzt.
+Die identischen Metabolite, wie in der Ribose-5P Simulation, konnten mit dem Blut ausgetauscht werden.
+
+Die optimale Flusslösung mittels Flussminimierung ist in Abb.~\ref{fig: 04_NADPH_cyto} dargestellt. Die in der Diskussion verwendeten Flusswerte und prozentualen Angaben sind in Tab.~\ref{tab: ribose_nadph} angegeben.
+
+In der Flusslösung wird in drei Reaktionen $\text{NADP}^+$ zu NADPH und $\text{H}^+$ reduziert.
+NADPH wird nahezu vollständig (99.34~\%) im oxidativen Teil des PPP synthetisiert. Die G6PDH und 6PGD sind dabei für jeweils 49.68~\% des gebildeten NADPH verantwortlich.\\
+Der minimale Rest wird von einem zytosolischen Isoenzym der ICDH bereitgestellt (0.64~\%). Die mitochondriale ICDH ist Teil des Citratzyklus und durch die Verwendung des zytosolischen Isoenzyms verläuft der Citratzyklus nicht vollständig im Mitochondrium, sondern eine der Reaktionen im Zytosol.\\
+Andere NADPH produzierenden Reaktionen wie beispielsweise das zytosolische Malic Enzyme sind nicht Teil der Lösung.
+
+Die aufgenommene Glucose wird nahezu vollständig (96.32~\%) im oxidativen Teil des PPP zu $\text{CO}_2$ oxidiert, wobei Reduktionsenergie in Form von NADPH gespeichert wird. Analog zur Ribose-5P Simulation, gelangt nur ein sehr geringer Teil der Glucose in den unteren Teil der Glykolyse (3.68~\%).
+
+Energie in Form von ATP wird nur für die GK zur Phosphorylierung der Glucose benötigt. Die PFK ist nicht Teil der Flusslösung und verbraucht daher auch keine Energie.\\
+Die ATP Energie stammt wie in der Ribose-5P Simulation nur zu einem geringen Teil aus den ATP erzeugenden Reaktionen der Glykolyse (14.7~\%). Der Hauptteil der Energie wird durch oxidative Phosphorylierung bereitgestellt (85.29\%). 
+
+Die Reduktionsenergie des NADH, die in der Glykolyse anfällt (GAPDH) wird ins Mitochondrium transferiert. Dafür wird allerdings eine andere Transporterkombination in der inneren Mitochondrienmembran verwendet als in der Ribose-5P Simulation.
+Malat wird nicht im direkten Antiport gegen $\alpha$-Ketoglutarat ausgetauscht, sondern indirekt gegen Isocitrat.
+Dadurch ist ein geringer Fluss durch die zytosolische Isocitrat Dehydrogenase möglich, der einen Beitrag zur Bereitstellung von Reduktionsenergie in Form von NADPH hat. 
+ 
+Das in der oxidativen Phosphorylierung entstehende ATP wird wiederum über ANT ins Zytosol transportiert.
+
+Auffälligster Unterschied zur Ribose-5P Simulation ist, dass ein Teil der Glykolyse in Richtung Gluconeogenese abläuft. Die PFK Reaktion findet nicht statt, dafür ist die FBP Teil der Lösung. Hierdurch entsteht ein Zyklus, der FBP, G6PDH und 6PGD enthält. Dieser Zyklus ermöglicht durch mehrmaliges Durchlaufen, Glucose vollständig zu $\text{CO}_2$ zu oxidieren.
+
+\paragraph{Vergleich Ribose-5P und NADPH}
+Die Glucoseflüsse in beiden Simulationen sind nahezu identisch, obwohl der PPP für vollkommen unterschiedliche Ziele verwendet wird. In beiden Fällen kann der Großteil der Glucose im PPP zur Erfüllung des jeweiligen Zielflusses verwendet werden. Entweder zur Erzeugung von NADPH (96.32~\%) oder zur Synthese von Ribose-5P (96.13~\%).
+Die restliche Glucose wird in beiden Fällen zur Energieversorgung der Aktivierungsreaktionen der Glucose verwendet. Der Großteil der Energie wird dabei über oxidative Phosphorylierung eines kleinen Teils der Glucose bereitgestellt. Im Falle des Ribose-5P liefern 3.87~\% der Glucose 87.42~\% der Energie, im Fall von NADPH 3.68~\% der Glucose 85.29~\% der Energie. Die Reduktionsenergie die auf Höhe der GAPDH Reaktion anfällt wird jeweils über Transporter in das Mitochondrium transportiert und dort ebenfalls zur oxidativen Phosphorylierung verwendet.
+
+Durch zwei einfache Stellgrößen kann reguliert werden, wie sich der Fluss auf den PPP verteilt und die Glucose verbraucht wird. Einerseits über den Abfluss von Ribose-5P, andererseits über den Bedarf an NADPH, der den Fluss durch die erste Reaktion des oxidativen Wegs des PPP entscheidet (G6PDH). Die beiden Lösungen sind abgesehen von den PPP Reaktionen und der PFK und FBP nahezu identisch. Zwei sehr unterschiedliche Ziele können mit nahezu identischer Belastung der Glykolyse erzielt werden.
+
+Im Falle der Reduktionsenergie in Form von NADPH wird ein minimaler Teil des Lösungsflusses über die zytosolische ICDH realisiert. Hier stellt sich die Frage, ob dies in der Realität der Fall ist, oder ob dies nur ein Artefakt der verwendeten Flussminimierung ist. 
+
+
+\clearpage
+\begin{comment}
+Die Gluconeogenese ausgehend von Laktat ist von zentraler Bedeutung bei Muskelarbeit. Laktat entsteht v.a. wenn Glykolyse unter anaeroben Bedingungen stattfindet (siehe auch Simulationen zur anaeroben Glykolyse). Das bei Muskeltätigkeit entstehende Pyruvat wird, falls dieses nicht für die oxidative Phosphorylierung verwendet werden kann, zu Laktat umgewandelt und an den Blutkreislauf abgegeben. Die Leber wandelt dieses auf dem Weg der Gluconeogenese wieder in Glucose zurück. Dieses steht nach Abgabe an den Blutkreislauf wieder für den Muskel zur Verfügung (Cori-Zyklus) \cite{Nelson2008}.
+
+Die Gluconeogenese ausgehend von Alanin ist wichtig für Ammoniakentgiftung. Ammoniak kann in extrahepatischen Geweben mittels ALT auf Pyruvat übertragen und anschließend als Alanin über das Blut zur Leber transportiert werden. Im Hepatozyten kann das Alanin zur Gluconeogenese verwendet werden, das dabei entstehende Ammoniak wird entgiftet (Glucose-Alanin Zyklus)
+This also is the case for alanine, another major product of glycolysis. It is used to transfer amino groups back to the liver from other organs. \cite{Felig1975}
+
+ \cite{Nelson2008}.
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Gluconeogenese ausgehend von unterschiedlichen Substraten %%%
+\subsection{Gluconeogenese}
+\paragraph{Abkürzungen}
+  \small
+  \textbf{GK} Glucokinase,
+  \textbf{PFK} Phosphofructokinase,
+  \textbf{FBP} Fructose-1,6 Bisphosphatase
+  \textbf{PGK} Phosphoglyceratkinase,
+  \textbf{PK} Pyruvatkinase,
+  \textbf{PDH} Pyruvat Dehydrogenase,
+  \textbf{GAPDH} Glyceraldehyde 3-phosphate Dehydrogenase,
+  \textbf{MDH} Malat Dehydrogenase,
+  \textbf{ANT} Adeninenucleotide Carrier
+  \textbf{G6P} Glucose-6 Phosphatase
+  \textbf{TPI} Triosephosphat Isomerase
+  \textbf{ALT} Alanintransaminase 
+  \textbf{PC} Pyruvat Carboxylase
+  \textbf{PEPCK} PEP Carboxykinase 
+  \normalsize
+
+\paragraph{Einleitung}
+Die Gluconeogenese, die Synthese von Glucose aus glucogenen Vorstufen, ist ein zentraler Stoffwechselweg der Leber und von entscheidender Bedeutung bei der Aufgabe der Leber den Blutglucosespiegel konstant zu halten. Eine detaillierte Einleitung zur Gluconeogenese und zur Bedeutung v.a. auch im Cori- und Glucose-Alanin-Zyklus wird in der Einleitung zum kinetischen Modell der Glykolyse, Gluconeogenese und Glykogenstoffwechsel gegeben (ref Kap.?).
+
+Alle Metabolite, die zu Oxalacetat oder zu Zwischenprodukten der Glykolyse umgewandelt werden können, können als Ausgangspunkt der Gluconeogenese. Die wichtigsten Vorstufen sind organische Moleküle mit drei Kohlenstoffatomen wie Laktat, Pyruvat und Glycerol, sowie die glucogenen Aminosäuren \cite{Nelson2008}.\\
+Glycerol kann in DHAP umgewandelt werden und steht damit als Glycolyseintermediat für die Gluconeogenese zur Verfügung.
+Laktat wird mittels LDH zu Pyruvat oxidiert. Alanin kann über die ALT in Pyruvat umgewandelt werden.
+Der erste Gluconeogeneseschritt, ausgehend von Pyruvat, ist die ATP-abhängige Carboxylierung zu Oxalacetat mittels PC. Die glucogenen Aminosäuren werden zu Intermediaten des Citratzyklus umgewandelt und stehen schlussendlich ebenfalls als Oxalacetat für die Gluconeogenese zur Verfügung. Oxalacetat wird über die PEPCK zu PEP, einem Glykolyseintermediat.
+
+\paragraph{Simulationen}
+In den Simulationen zur Gluconeogenese wurde als Zielfluss der Glucoseexport ins Blut vorgegeben. Die Gluconeogenese wurde ausgehend von unterschiedlichen Substraten getestet. Laktat (s. Abb.\ref{fig: 14_lactate_to_glucose}), Alanin (s. Abb. \ref{fig: 15_alanine_to_glucose}), Pyruvat (s. Abb. \ref{fig: 16_pyruvate_to_glucose}), Oxalacetat (s. Abb. \ref{fig: 17_oxalacetate_to_glucose}) und Glycerol (s. Abb. \ref{fig: 18_glycerol_to_glucose}) wurden als verschiedene Vorstufen verwendet. Diese konnten jeweils unbegrenzt aus dem Blut aufgenommen werden. Weiterhin war der Export von $\text{CO}_2$ und Urea sowie der Import von $\text{O}_2$ und Arginin für die Harnstoffsynthese in allen Simulationen erlaubt.\\
+Die Simulationen wurden ohne Einschränkung des Sauerstoffflusses durchgeführt, sind also vollständig aerob. Die verwendeten Flusswerte und prozentualen Angaben sind in Übersichtstabelle \ref{tab: gluconeogenesis} angegeben.
+
+\begin{landscape}
+\begin{table}[!htp]
+\centering
+\tiny
+\begin{tabular}{l rr rr rr rr rr}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Laktat}}&\multicolumn{2}{c}{\textbf{Alanin}}&\multicolumn{2}{c}{\textbf{Pyruvat}} & \multicolumn{2}{c}{\textbf{Oxalacetat}} & \multicolumn{2}{c}{\textbf{Glycerol}}\\
+ \midrule
+ & Fluss & Fluss [\%] & Fluss & Fluss [\%] & Fluss & Fluss [\%] & Fluss & Fluss [\%] & Fluss & Fluss [\%]\\
+\cmidrule(l){2-11}
+\textit{Import Substrat} & 2.4 &  & 2.84 &  & 2.91 &  & 2.93 &  & 2 & \\
+ &  &  &  &  &  &  &  &  &  & \\
+\textit{ATP Erzeugung Mitochondrium} & 5.6 & 100 & 11.68 & 100 & 6 & 100 & 4 & 100 & 2 & 100\\
+\hspace*{5mm}Oxidative Phosphorylierung [OXP] & 5.19 & 92.81 & 10.84 & 92.81 & 5.09 & 84.77 & 3.08 & 76.88 & 2 & 100\\
+\hspace*{5mm}Succinat CoA Ligase (ATP) & 0 & 0 & 0 & 0 & 0.91 & 15.23 & 0.92 & 23.12 & 0 & 0\\
+\hspace*{5mm}Succinat CoA Ligase (GTP) & 0.4 & 7.19 & 0.84 & 7.19 & 0 & 0 & 0 & 0 & 0 & 0\\
+ &  &  &  &  &  &  &  &  &  & \\
+\textit{ATP Verbrauch Mitochondrium} & -3.6 & -64.27 & -6.68 & -57.19 & -2 & -33.33 & 0 & 0 & 0 & 0\\
+\hspace*{5mm}PEP Carboxykinase [PEPCK] & -2 & -35.73 & -1 & -8.56 & 0 & 0 & 0 & 0 & 0 & 0\\
+\hspace*{5mm}Pyruvat Carboxylase [PC] & -1.6 & -28.54 & -2 & -17.12 & -2 & -33.33 & 0 & 0 & 0 & 0\\
+\hspace*{5mm}Carbamoylphosphat Synthase [CPS] & 0 & 0 & -3.68 & -31.51 & 0 & 0 & 0 & 0 & 0 & 0\\
+ &  &  &  &  &  &  &  &  &  & \\
+\textit{ATP Transport [Mitochondrium $\rightarrow$ Zytosol]} &  &  &  &  &  &  &  &  &  & \\
+\hspace*{5mm}Adeninenucleotide Carrier [ANT] & 2 & 35.73 & 5 & 42.81 & 4 & 66.67 & 4 & 100 & 2 & 100\\
+ &  &  &  &  &  &  &  &  &  & \\
+\textit{ATP Verbrauch Zytosol} & -2 & -35.73 & -5 & -42.81 & -4 & -66.67 & -4 & -100 & -2 & -100\\
+\hspace*{5mm}Glucokinase [GK] & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\hspace*{5mm}Phosphofructokinase [PFK1] & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\hspace*{5mm}Phosphoglyceratkinase [PGK] & -2 & -35.73 & -2 & -17.12 & -2 & -33.33 & -2 & -50 & 0 & 0\\
+\hspace*{5mm}Pyruvatkinase [PK] & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\hspace*{5mm}Glycerolkinase  & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -2 & -100\\
+\hspace*{5mm}PEP Carboxykinase [PEPCK] & 0 & 0 & -1 & -8.56 & -2 & -33.33 & -2 & 50 & 0 & 0\\
+\hspace*{5mm}Arginosuccinat Synthase [ASS] & 0 & 0 & -1 & -8.56 & 0 & 0 & 0 & 0 & 0 & 0\\
+\hspace*{5mm}Adenylatkinase & 0 & 0 & -1 & -8.56 & 0 & 0 & 0 & 0 & 0 & 0\\
+ &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  & \\
+\textit{Wichtige Flüsse} &  &  &  &  &  &  &  &  &  & \\
+\hspace*{5mm}$\text{O}_2$ Verbrauch & 1.21 &  & 2.52 &  & 1.28 &  & 0.85 &  & 0.43 & \\
+\hspace*{5mm}$\text{CO}_2$ Erzeugung & 1.21 &  & 0.68 &  & 2.74 &  & 5.7 &  & 0 & \\
+\hspace*{5mm}Fructose-1,6 bisphosphatase [FBP1] & 2 &  & 2 &  & 2 &  & 2 &  & 2 & \\
+\hspace*{5mm}Enolase [EN] & 2 &  & 2 &  & 2 &  & 2 &  & 0 & \\
+\hspace*{5mm}Pyruvat Dehydrogenase [PDH] & 0.4 &  & 0.84 &  & 0.91 &  & 0.92 &  & 0 & \\
+\hspace*{5mm}Malat Dehydrogenase [MDH] Zytosol & -0.4 &  & 2 &  & -2 &  & 2 &  & -2 & \\
+\hspace*{5mm}Malat Dehydrogenase [MDH] Mitochondrium & 1.21 &  & -0.16 &  & -1.09 &  & -2 &  & 2 & \\
+\hspace*{5mm}Fumarat Hydratase [FH] Mitochondrium & 0.4 &  & 0.84 &  & 0 &  & 0 &  & 0\\
+\hspace*{5mm}Fumarat Hydratase [FH] Zytosol & 0 &  & 1 &  & 0.91 &  & 0.92 &  & 0\\
+\hspace*{5mm}Malic Enzyme [ME] & 0.4 &  & 0 &  & 0 &  & 0.92 &  & 0\\
+\bottomrule
+\end{tabular}
+\label{tab: gluconeogenesis} 
+\caption{Gluconeogenese ausgehend von unterschiedlichen Substraten (FBA Simulationen): Sämtliche Flusswerte sind Relativwerte bezüglich des Zielflusses Glucoseexport, der auf 1 normiert ist. Die prozentualen ATP Flüsse beziehen sich auf die mitochondriale ATP Erzeugung bestehend aus oxidativer Phosphorylierung und Succinat CoA Ligase. In der oxidativen Phosphorylierung sind die ATP Erzeugung durch Einspeisung von NADH mit P/O 2.3 und $\text{FADH}_2$ durch die Succinat Dehydrogenase mit P/O 1.4 zusammengefasst. Fluss durch Enzyme des Citratzyklus sind in Standardrichtung positiv. Fluss durch ATP erzeugende Reaktionen ist positiv, durch ATP verbrauchende Reaktionen negativ. Fluss durch Enolase in Richtung Gluconeogenese positiv.}
+\normalsize
+\end{table}
+\end{landscape}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=410pt,keepaspectratio=true]{./2_reconstruction/figures/fba/gluconeogenese/14_lactate_to_glucose.png}%{./2_reconstruction/figures/fba/gluconeogenese/14_lactate_to_glucose_small.png}
+ \caption{Gluconeogenese ausgehend von Laktat: Laktat wird durch LDH zu Pyruvat. Das dabei entstehende NADH wird zum Teil in der GAPDH Reaktion verwendet, zum anderen Teil über Malatshuttle ins Mitochondrium transportiert. Das Pyruvat wird teilweise mittels PC zu Oxalacetat, teilweise zu Acetyl-CoA für die Oxidation im Citratzyklus. Mitochondriale PEPCK erzeugt die 2 PEP aus denen 1 Glucosemolekül synthetisiert wird. Energieversorgung erfolgt über die oxidative Phosphorylierung. ATP wird über ANT ins Zytosol transportiert. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: 14_lactate_to_glucose}
+\end{figure}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=400pt,keepaspectratio=true]{./2_reconstruction/figures/fba/gluconeogenese/15_alanine_to_glucose.png}%{./2_reconstruction/figures/fba/gluconeogenese/15_alanine_to_glucose_small.png}
+ \caption{Gluconeogenese ausgehend von Alanin: Alanin wird über ALT zu Pyruvat, die $\text{NH}_3$-Gruppe wird dabei auf $\alpha$-Ketoglutarat übertragen. Das Pyruvat wird teilweise mittels PC zu Oxalacetat, teilweise zu Acetyl-CoA für die Oxidation im Citratzyklus. Die 2 benötigten PEP für  1 Glucosemolekül wird zu gleichen Teilen von zytosolischer und mitochondrialer PEPCK synthetisiert. Energieversorgung der Gluconeogenese über die oxidative Phosphorylierung. ATP Transport ins Zytosol über ANT. Der Harnstoffzyklus wird für die Entgiftung des $\text{NH}_3$ verwendet. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: 15_alanine_to_glucose}
+\end{figure}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=400pt,keepaspectratio=true]{./2_reconstruction/figures/fba/gluconeogenese/16_pyruvate_to_glucose.png}%{./2_reconstruction/figures/fba/gluconeogenese/16_pyruvate_to_glucose_small.png}
+ \caption{Gluconeogenese ausgehend von Pyruvat: Pyruvat wird teilweise durch PC zu Oxalacetat, teilweise zu Acetyl-CoA für die Oxidation im Citratzyklus. Zytosolische PEPCK erzeugt die 2 PEP aus denen 1 Glucosemolekül synthetisiert wird. Energieversorgung über die oxidative Phosphorylierung. Transport von ATP über ANT ins Zytosol. NADH für die GAPDH wird mittels Malatshuttle aus dem Mitochondrium ins Zytosol transportiert. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: 16_pyruvate_to_glucose}
+\end{figure}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=400pt,keepaspectratio=true]{./2_reconstruction/figures/fba/gluconeogenese/17_oxalacetate_to_glucose.png}%{./2_reconstruction/figures/fba/gluconeogenese/17_oxalacetate_to_glucose_small.png}
+ \caption{Gluconeogenese ausgehend von Oxalacetat: Das für den Citratzyklus benötigte Acetyl-CoA erzeugt die PDH aus Pyruvat, welches aus Oxalacetat mittels ME im Zytosol erzeugt wird. Hierzu wird das Oxalacetat zum Teil zu Malat, welches über den Malatshuttle ins Zytosol transportiert wird. Energieversorgung über die oxidative Phosphorylierung. ATP Transport ins Zytosol über ANT. NADH für die GAPDH wird mittels Malatshuttle aus dem Mitochondrium ins Zytosol transportiert. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: 17_oxalacetate_to_glucose}
+\end{figure}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=400pt,keepaspectratio=true]{./2_reconstruction/figures/fba/gluconeogenese/18_glycerol_to_glucose.png}%{./2_reconstruction/figures/fba/gluconeogenese/18_glycerol_to_glucose_small.png}
+ \caption{Gluconeogenese ausgehend von Glycerol: Die Gluconeogenese ausgehend von Glycerol unterscheidet sich sehr stark von den anderen getesteten Substraten. Glycerol wird über GLYK und GPD zu DHAP. Das entstehende NADH in der GPD Reaktion wird über den Malatshuttle ins Mitochondrium transportiert und kann dort die notwendige Energie über oxidative Phosphorylierung für die Gluconeogenese bereitstellen. Die Flusslösung unterteilt sich in zwei Bereiche. Einerseits die Synthese von Glucose, andererseits die Bereitstellung der für die Synthese notwendige Energie. Farbkodierung entsprechend Abb.~\ref{fig: o2_anaerob}.}
+ \label{fig: 18_glycerol_to_glucose}
+\end{figure}
+
+%%% Auswertung
+Das Modell des Kernhepatozyten ist ausgehend von allen getesteten Substraten in der Lage, Gluconeogenese zu betreiben. Die Flusslösungen verwendeten jeweils die Umgehungsreaktionen der Glykolyse (G6P, FBP und PEPCK). Die GK, PFK und PK Reaktionen wurde in keiner der Flusslösungen verwendet.
+
+In den FBA Simulationen mit Laktat, Alanin, Pyruvat und Oxalacetat werden jeweils zwei Moleküle PEP zur Gluconeogenese von einem Glucosemolekül verwendet. Dabei verläuft die Glucosesynthese ausgehend von PEP unter Umgehung der PFK durch die FBP und der GK durch die G6P.\\
+Glycerol wird dagegen durch die Glycerolkinase und die Glycerol-3 Phosphat Dehydrogenase zu DHAP und anschließend durch die  Aldolase in die Gluconeogenese eingeschleust. DHAP wird dazu teilweise über die TPI in Glycerinaldehyd-3 Phosphat umgewandelt, welches mit DHAP zu Fructose-1,6 Bisphosphat reagiert. Analog zu den anderen Substraten verläuft dann die Bildung der Glucose über FBP, G6PI und G6P.\\
+Die synthetisierte Glucose wird in allen Fällen vollständig über GLUT2 exportiert.
+
+Alle Substrate waren in der Lage den Energiebedarf für die Gluconeogenese vollständig selbst zu decken, d.h für die Simulationen musste keine zusätzliche Energie in Form von ATP oder reduzierten Reduktionsäquivalenten vorgegeben werden.\\
+
+Für die Bildung eines Moleküls Glucose wurde in Abhängigkeit von der verwendeten Vorstufe unterschiedliche Mengen an Substrat benötigt. Die geringste Menge wird bei der Umsetzung von Glycerol in Glucose benötigt. Aus 2 Glycerolmolekülen kann ein Glucosemolekül synthetisiert werden. Weniger effizient sind Laktat (2.4), Alanin (2.84), Pyruvat (2.91) und Oxalacetat (2.93).\\
+Glycerol kann den Energiebedarf für die Gluconeogenese vollständig über die Vorbereitungsreaktionen zur Umwandlung in DHAP decken, daher sind nur 2 Glycerolmoleküle für die Erzeugung eines Glucosemoleküls notwendig. Bei den anderen Glucosevorstufen muss dagegen durch oxidativen Abbau eines Teils des Substrats Energie für die Gluconeogenese erzeugt werden. Daher muss mehr Substrat, als allein für das Kohlenstoffgerüst der Glucose (2) benötigt wird, aufgenommen werden.\\
+Laktat und Glycerol werden bei den einschleusenden Reaktionen bis zum Pyruvat bzw. DHAP oxidiert. Reduktionsenergie wird in Form reduzierter Reduktionsäquivalente generiert. Sowohl bei der Oxidation von Laktat zu Pyruvat (LDH), als auch durch die Glycerol-3P Dehydrogenase bei der Glycerolumwandlung zum DHAP wird $\text{NAD}^+$ zu NADH reduziert.\\
+NADH wird bei der Verwertung von Glycerol zur ATP-Synthese in der oxidativen Phosphorylierung verwendet, bei Laktat für die GAPDH. Bei Verwendung von Glycerol wird kein NADH für die GAPDH Reaktion benötigt, da das Glycerol auf Höhe der Aldolase in die Gluconeogenese eingespeist wird und daher die GAPDH nicht zur Gluconeogenese notwendig ist.
+
+Die notwendige ATP Energie für die Gluconeogenese wird bei allen Substraten vollständig im Mitochondrium erzeugt. Das im Zytosol verbrauchte ATP wird mittels ANT aus dem Mitochondrium ins Zytosol transportiert.\\
+Der Großteil des ATP wird bei allen Substraten über die oxidative Phosphorylierung erzeugt, das restliche ATP durch die Succinat CoA Ligase im Citratzyklus. Die durch oxidative Phosphorylierung und die Succinat CoA Ligase beigesteuert Anteile variieren und reichen von 100~\% oxidative Phosphorylierung bei Glycerol bis zu 77~\% beim Oxalacetat. Der Citratzyklus in Kombination mit Atmungskette und oxidativer Phosphorylierung stellt daher bei allen Substraten die Energieversorgung sicher.\\
+Im Fall von Laktat und Alanin fallen 92.81~\% des erzeugten ATP auf die oxidative Phosphorylierung, die restlichen 7.19~\% werden jeweils durch die mit GTP als Kofaktor arbeitende Succinat CoA Ligase gebildet. Die im GTP gespeicherte Energie kann über die Nucleotiddiphosphatekinase auf ATP übertragen werden. Bei Pyruvat sinkt der Anteil der oxidativen Phosphorylierung auf 84.77~\%, bei Oxalacetat auf 76.88~\%.
+
+Die für die Synthese eines Glucosemoleküls benötigte ATP Menge variiert in Abhängigkeit vom Substrat sehr stark.\\
+Im Fall von Glycerol werden nur 2 ATP benötigt und zwar für die Phosphorylierung des Glycerols durch die Glycerolkinase. Die 2 ATP können mittels des in der Glycerol-3P Dehydrogenase erzeugten NADH in der oxidativen Phosphorylierung erzeugt werden \footnote{Für sämtliche Simulationen wurden P/O Quotienten von 2.3 für NADH und 1.4 für $\text{FADH}_2$ verwendet. Siehe ausführliche Fußnote in den Simulationen zur aeroben und anaeroben Glykolyse.}.\\
+Glycerol kann nicht nur den notwendigen Energiebedarf für die Gluconeogenese decken, sondern ist in geringem Umfang sogar in der Lage Energie in der Gluconeogenese für zelluläre Prozesse bereitzustellen. Bei den verwendeten P/O Quotient von 2.3 in dem Modell können aus dem 1 NADH der Glycerol-3 Phosphat Dehydrogenase 2.3 ATP erzeugt werden. Allerdings werden nur 2 ATP für die Synthese eines Glucosemoleküls aus 2 Glycerol benötigt. 0.774 NADH werden in der oxidativen Phosphorylierung zu den 2 notwendigen ATP für die Gluconeogenese, die Reduktionsenergie der restlichen 0.226 NADH werden über die mitochondriale Glutamin Dehydrogenase, die sowohl NADH und NADP als Kofaktor verwenden kann auf NADPH übertragen und stehen für die Zelle als Reduktionspotential bereit, z.B. für reduktive Biosynthesen.
+
+Ausgehend vom Oxalacetat werden 4 ATP benötigt, bei Pyruvat 6 und beim Alanin sogar 11.68 ATP für die Synthese eines Glucosemoleküls.\\
+Gluconeogenese ausgehend von Alanin ist im Vergleich zu den anderen getesteten Substraten energetisch sehr aufwendig, da neben den Kosten für die Gluconeogenese die Detoxifizierung des $\text{NH}_3$ 
+\footnote{NH3 liegt unter physiologischen Bedingungen in der Zelle nahezu vollständig als NH4+ vor, wird aber in allen Reaktionsgleichungen und auch in der Diskussion als NH3 bezeichnet.}
+zusätzlich hohe Energiekosten verursacht.
+
+$\text{NH}_3$ entsteht dabei bei der Umsetzung von Alanin zu Pyruvate. ALT überträgt die $\text{NH}_3$ Gruppe zunächst von Alanin auf $\alpha$-Ketoglutarat unter der Bildung von Glutamat. Das $\text{NH}_3$ wird schließlich aus dem Glutamat durch die mitochondriale Glutamat Dehydrogenase freigesetzt. Die Entgiftung erfolgt über den Harnstoffzyklus. Dabei wird Urea gebildet, welches ans Blut abgegeben wird. Harnstoffzyklus und Ammoniakentgiftung treten nur in der Flusslösung zur Gluconeogenese ausgehend von Alanin auf. Die übrigen untersuchten Substrate besitzen keine Stickstoffatome.\\ 
+Der Harnstoffzyklus ist energetisch aufwendig: 1 ATP wird in der Argininosuccinat Synthase Reaktion verbraucht, ein weiteres in der Adenylatkinase, welches AMP zu ADP umwandelt. Weitere 3.68 ATP benötigt ist die Carbamoylphosphat Synthase. Somit sind insgesamt 5.68 zusätzliche ATP für die Ammoniakentgiftung notwendig und erklären die große Menge an ATP die im Mitochondrium bei der Verwendung von Alanin erzeugt werden muss (11.68). Für Pyruvat als Substrat, dem die $\text{NH}_3$ fehlt, werden entsprechend nur 6 ATP benötigt.
+
+% Erwähnung des erlaubten Arginin imports. 
+Da die Energie v.a. durch die oxidative Phosphorylierung bereitgestellt wird spiegeln sich die energetischen Kosten der unterschiedlichen Substrate auch in dem unterschiedlichen Sauerstoffverbrauch wieder. Alanin benötigt am meisten Sauerstoff (2.52) gefolgt von Pyruvate (1.28), Laktat (1.21), Oxalacetate (0.85) und Glycerol (0.43).
+
+% ATP Verbrauch im Zytosol und Mitochondrium (wie die Verteilung zwischen den beiden Komponenten)
+Je nach Substrat unterscheidet sich der Anteil an ATP Verbrauch im Zytosol und Mitochondrium.\\
+Bei Glycerol und Oxalacetat wird das für die Gluconeogenese notwendige ATP vollständig im Zytosol verbraucht. Im Fall von Glycerol für die Glycerolkinase, im Fall von Oxalacetat für die PEPCK und die PGK. Beim Oxalacetat wird im Gegensatz zu Laktat, Alanin und Pyruvat kein ATP in der PC Reaktion verbraucht, da Oxalacetat als Substrat vorhanden ist und nicht aus Pyruvat erzeugt werden muss. Im Gegenteil, über den Umweg des zytosolischen Malic Enzyme muss Pyruvat aus Oxalacetat gebildet werden. Das Pyruvat ist im Falle von Oxalacetat als Substrat notwendig, um über PDH und CS als Acetyl-CoA in den Citratzyklus eingespeist zu werden.\\
+Bei Laktat wird 64.27~\% der Energie im Mitochondrium für die mitochondriale PEPCK und die PC Reaktion, die übrigen 35.73~\% im Zytosol für die PGK. Im Fall von Laktat werden umgekehrt ein Drittel des ATP im Mitochondrium verbraucht (33.33~\%) für die PC, im Zytosol die restlichen zwei Drittel (66.67~\%) für die zytosolische PEPCK und die PGK. Im Fall von Alanin werden 57.19~\% der Energie im Mitochondrium für PEPCK, PC und CPS verbraucht, 42.81~\% im Zytosol für PEPCK, ASS, Adenylatkinase und PGK.
+
+Die im Mitochondrium erzeugte ATP Energie muss für die energieverbrauchenden Reaktionen im Zytosol aus dem Mitochondrium transportiert werden. Dies geschieht in allen Simulationen ausschließlich über ANT im Gegentausch mit ADP.
+
+Der Transport der Reduktionsenergie zwischen Zytosol und Mitochondrium spielt bei allen untersuchten Vorstufen eine wichtige Rolle. Da keine Transporter in der inneren Mitochondrienmembran für NADH und NAD+ existieren, muss die Reduktionsenergie auf anderem Wege zwischen Mitochondrium und Zytosol transportiert werden.\\
+Wenn ein Überschuss an NADH im Zytosol vorhanden ist (wie im Fall von Glycerol und Laktat) wird Oxalacetat durch die zytosolische MDH zu Malat reduziert, wobei NADH zu $\text{NAD}_+$ und $\text{H}_+$ oxidiert wird. Malat wird über den Malatshuttle ins Mitochondrium transportiert. Dort findet die Rückreaktion von Malat zu Oxalacetat durch die mitochondrialen MDH statt, die Reduktionsenergie wird als mitochondriales NADH gespeichert. Wenn Reduktionsenergie in Form von NADH dagegen aus dem Mitochondrium ins Zytosol transportiert werden muss, wie im Fall von Alanin, Pyruvate und Oxalacetat, da dieses für die GAPDH benötigt wird, arbeitet der Malatshuttle und die zytosolische und mitochondriale MDH in entsprechend umgekehrter Richtung (s.\ref{tab: gluconeogenesis}).
+
+Das bei Laktat als Vorstufe im Zytosol gebildete NADH durch LDH wirkt sich auch auf die PEPCK Reaktion aus. Wenn genügend NADH im Zytosol vorhanden ist, wird das für die Gluconeogenese benötigte PEP vollständig mittels der mitochondrialen Isoform der PEPCK erzeugt und anschließend ins Zytosol transportiert.\\
+Im Fall von Pyruvat und Oxalacetat als Vorstufe, wird dagegen ausschließlich die zytosolische PEPCK zur Synthese von PEP verwendet. Das Oxalacetat für die PEPCK Reaktion ist durch die Nutzung des Malatshuttels für den Transport von NADH ins Zytosol bereits im Zytosol vorhanden und kann dort für die Synthese von PEP verwendet werden.\\
+Im Fall von Glycerol muss kein PEP synthetisiert werden, da Glycerol erst deutlich später in die Gluconeogenese eingespeist wird.\\
+Bei Alanin wird in der Flusslösung die zytosolische und mitochondriale PEPCK zu gleichen Teilen verwendet. Die Ursache ist, dass ein Teil des zytosolischen Oxalacetats für andere Reaktionen verwendet wird. Durch die zytosolische MDH werden 2 Oxalacetat erzeugt, allerdings wird nur 1 Oxalacetat durch die PEPCK zu zytosolischem PEP umgewandelt. Das andere Oxalacetat wird für die Aspartat Transaminase (AST) verwendet, welches mit Glutamin als weiterem Substrat, Aspartat und $\alpha$-Ketoglutarat bildet. Aspartat wird in der Alaninlösung für die Argininosuccinat Synthase im Harnstoffzyklus benötigt. Das zweite PEP über die mitochondriale PEPCK synthetisiert und anschließend ins Zytosol transportiert.
+
+Die Lösung ausgehend von Oxalacetat ist sehr ähnlich zur Lösung basierend auf Pyruvat. Einziger großer Unterschied ist, dass Pyruvat für den Citratzyklus erzeugt werden muss, welches mittels Malic Enzyme im Zytosol erzeugt. Oxalacetat, sowie Fumarat werden aus dem Mitochondrium über Shuttle-Systeme ins Zytosol transportiert. Malat kann zu Pyruvat durch das Malic Enzyme unter der Reduktion von $\text{NADP}^+$ zu NADPH decarboxyliert werden. Dieser recht aufwendige Weg über zwei Kompartimente muss gegangen werden, da auf Grund der Irreversibilität der PC diese Reaktion nicht einfach umgekehrt werden kann, um Pyruvat aus Oxalacetat zu erzeugen. Daher muss eine alternativer Weg verwendet werden.\\
+Der Fluss durch das Malic Enzyme entspricht dem Fluss durch die Succinat CoA Ligase (0.92), da alles Pyruvat, dass über das ME erzeugt wird vollständig als Acetyl-CoA in den Citratzyklus eingespeist wird und dort bis zum Fumarat oxidiert wird. Das ME erzeugt gerade soviel Pyruvat wie für die Energieversorgung mittels oxidativer Phosphorylierung notwendig ist.\\
+Im Fall von Laktat, Alanin und Pyruvat stellt sich jeweils das umgekehrte Problem. Pyruvat ist vorhanden, aber das notwendige Oxalacetat für die Gluconeogenese muss zunächst erzeugt werden. Bei diesen Substraten findet man einen hohen Fluss durch die PC (Laktat 1.6, Alanin 2, Pyruvat 2), um unter ATP Verbrauch das notwendige Oxalacetat zu erzeugen.
+
+Auch das gebildete $\text{CO}_2$ variiert stark mit den Substraten.\\
+Im Fall von Laktat wird 1.21 $\text{CO}_2$ erzeugt. Bei Alanin wird am wenigsten $\text{CO}_2$ (0.68) ins Blut exportiert, da ein Teil für die Urea-Synthese durch die CPS in Form von $\text{HCO}_3^-$ verbraucht wird.\\
+Bei Oxalacetat werden 5.7 $\text{CO}_2$ gebildet. Dieser hohe Wert für Oxalacetat liegt an den ME und PC Reaktionen. Einerseits findet im Vergleich zu Pyruvat, Alanin und Laktat eine erhöhte $\text{CO}_2$ Produktion durch die decarboxylierende ME statt, andererseits keine $\text{CO}_2$ Fixierung durch die PC.\\
+Bei der Gluconeogenese ausgehend von Glycerol wird kein $\text{CO}_2$ gebildet, da keine decarboxylierende Reaktionen  Bestandteil der Flusslösung sind.
+
+Jedes Substrate für die Gluconeogenese hat seine eigenen Besonderheiten, die sich in der Flusslösung widerspiegeln. Alanin muss Ammoniak über den Harnstoffzyklus entgiften. Glycerol muss erst auf Höhe der Aldolasereaktion in die Gluconeogenese eingespeist werden und kann den Energiebedarf der Gluconeogenese vollständig über die vorbereitenden Reaktionen zum DHAP decken. Laktat liefert zytosolisches NADH über die LDH, was nicht erst aus dem Mitochondrium über den Malatshuttle ins Zytosol transportiert werden muss. Oxalacetat muss erst das für den Citratzyklus notwendige Pyruvat über das Malic Enzyme erzeugen.\\
+Das metabolische Netzwerk des Hepatozyten ist in der Lage alle diese substratspezifischen Erfordernisse zu bewerkstelligen. Einerseits tritt eine hohe Flexibilität des Metabolismus in den Lösungen zu Tage. Ausgehend von sehr unterschiedlichen äußeren Bedingungen (verschiedene Substrate für die Gluconeogenese) ist der Hepatozyt in der Lage ein Ziel zu erfüllen, die Gluconeogenese. Die dabei auftretenden Flusslösungen unterscheiden sich auf der einen Seite sehr stark (v.a. Glycerol im Vergleich zu den anderen Substraten). Aber auf der anderen Seite sind auch gemeinsame Prinzipien erkennbar. Wie, die Energieversorgung über die oxidative Phosphorylierung, Malatshuttle zum Austausch der Reduktionsenergie zwischen Zytosol und Mitochondrium und ANT zum Austausch von ATP und ADP oder Umwandlung der Vorstufen zum Oxalacetate und PEP (außer Glycerol). Gerade diese Flexibilität ist im Hepatozyten erforderlich, der Abhängig von der Nahrungsaufnahme, Nahrungszusammensetzung und dem Zustand des Organismus (z.B. starke Muskelarbeit) sehr unterschiedliche Metabolitzusammensetzungen des Blutes vorfindet.\\
+Normalerweise wird der Energiebedarf der Gluconeogenese im Hepatozyten durch Fettabbau gedeckt, um die wertvolleren Vorstufen (C3) zu sparen. In den Simulationen wurde jeweils nur das gluconeogene Substrat als Vorstufe vorgegeben. In FBA Simulationen, in denen zusätzliche auch Fettsäuren verwendet werden konnten, lieferte die $\beta$-Oxidation die Energie, die gluconeogenen Substrate wurden vollständig zur Gluconeogenese verwendet.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+\subsubsection{Synthese eines Beispielproteins}
+The liver plays the major role in producing proteins that are secreted into the blood, including major plasma proteins, factors in hemostasis and fibrinolysis, carrier proteins, hormones, prohormones and apolipoproteins:
+Human serum albumin is the most abundant protein in human blood plasma. It is produced in the liver. Albumin comprises about half of the blood serum protein. It is soluble and monomeric.
+
+Synthesis of the human Serum Albumin.
+Albumin is synthesized in the liver as preproalbumin which has an N-terminal peptide that is removed before the nascent protein is released from the rough endoplasmic reticulum. The product, proalbumin, is in turn cleaved in the Golgi vesicles to produce the secreted albumin.
+http://www.uniprot.org/uniprot/P02768
+Sequence length & 609 AA.
+Sequence status & Complete.
+Sequence processing & The displayed sequence is further processed into a mature form.
+Protein existence & Evidence at protein level.
+
+SQ   SEQUENCE   609 AA;  69367 MW;  F88FF61DD242E818 CRC64;
+     MKWVTFISLL FLFSSAYSRG VFRRDAHKSE VAHRFKDLGE ENFKALVLIA FAQYLQQCPF
+     EDHVKLVNEV TEFAKTCVAD ESAENCDKSL HTLFGDKLCT VATLRETYGE MADCCAKQEP
+     ERNECFLQHK DDNPNLPRLV RPEVDVMCTA FHDNEETFLK KYLYEIARRH PYFYAPELLF
+     FAKRYKAAFT ECCQAADKAA CLLPKLDELR DEGKASSAKQ RLKCASLQKF GERAFKAWAV
+     ARLSQRFPKA EFAEVSKLVT DLTKVHTECC HGDLLECADD RADLAKYICE NQDSISSKLK
+     ECCEKPLLEK SHCIAEVEND EMPADLPSLA ADFVESKDVC KNYAEAKDVF LGMFLYEYAR
+     RHPDYSVVLL LRLAKTYETT LEKCCAAADP HECYAKVFDE FKPLVEEPQN LIKQNCELFE
+     QLGEYKFQNA LLVRYTKKVP QVSTPTLVEV SRNLGKVGSK CCKHPEAKRM PCAEDYLSVV
+     LNQLCVLHEK TPVSDRVTKC CTESLVNRRP CFSALEVDET YVPKEFNAET FTFHADICTL
+     SEKERQIKKQ TALVELVKHK PKATKEQLKA VMDDFAAFVE KCCKADDKET CFAEEGKKLV
+     AASQAALGL
+\end{comment}
