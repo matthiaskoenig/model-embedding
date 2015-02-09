@@ -3,27 +3,33 @@
 /home/mkoenig/model-embedding/code/python/.metadata/.plugins/org.eclipse.core.resources/.projects/model-embedding/com.python.pydev.analysis/v2_indexcache
 embedding.FBAsimulation|1423478031000|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/FBAsimulation.py
 embedding.ModelDictionary|1423476078000|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/ModelDictionary.py
+embedding.TransformHepatoCore|1423488942000|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/TransformHepatoCore.py
 embedding.__init__|1423475649000|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/__init__.py
 -- END DISKCACHE
 -- START DICTIONARY
-1
-1=embedding.ModelDictionary
+2
+2=embedding.ModelDictionary
+1=embedding.TransformHepatoCore
 -- END DICTIONARY
 -- START TREE 1
-13
+17
 !<m|0|
-che|0|
-clo|0|
-com|0|
+che|1|check_sbml!10@
+clo|1|clone_and_fix_hepatocore!10@
+com|2|comps_map!11@comps_dict!11@
 cur|0|
-doc|0|
+doc|1|doc!11@
 err|0|
-glu|1|gluconet!11@
-hep|1|hepatocore!11@
-m|0|
-m2|0|
+get|1|get_cid_from_string!10@
+glu|2|gluconet!19@gluconet!11@
+hep|2|hepatocore!19@hepatocore!11@
+m|1|m!11@
+m2|1|m2!11@
 mai|0|
+rem|1|remove_cid_from_name!10@
 ren|0|
+rep|1|replace_cid_in_string!10@
+sbm|1|sbml_dir!11@
 -- END TREE
 -- START TREE 2
 0
