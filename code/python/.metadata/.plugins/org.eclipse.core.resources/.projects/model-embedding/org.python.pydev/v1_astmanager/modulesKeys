@@ -1,1 +1,5 @@
 MODULES_MANAGER_V2
+embedding.FBAsimulation|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/FBAsimulation.py
+embedding.ModelDictionary|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/ModelDictionary.py
+embedding.TransformHepatoCore|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/TransformHepatoCore.py
+embedding.__init__|/home/mkoenig/model-embedding/code/python/model-embedding/embedding/__init__.py
