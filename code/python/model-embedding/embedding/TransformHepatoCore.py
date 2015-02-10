@@ -90,7 +90,7 @@ def clone_and_fix_hepatocore():
         * Compartment mapping
         * Fix compartment part of ID 
     '''
-    version = 1
+    version = 2
     mid = 'HepatoCore2_v{}'.format(version)
     # read the original model
     doc_old = readSBML(hepatocore)
@@ -161,6 +161,107 @@ def clone_and_fix_hepatocore():
     writeSBMLToFile(doc, '{}/{}.xml'.format(sbml_dir, mid) );
     return m
 
+def hepatocore_gluconet_mapping(m):
+    '''
+    Performs the unification of the models
+    i.e. mapping of 
+    '''
+    # reorder substrates and products
+    reorder = ["TPI", "PGK", "PGM", "PK", "LDH", "LACT", "CS"]
+    # compartments
+    c_map = {
+             "extern" : "extern",
+             "cyto" : "cyto",
+             "mito" : "mito",
+             }
+    # species
+    s_map = {
+             "atp" : "ID_13648_cyto",
+             "adp" : "ID_13653_cyto",
+             "amp" : "ID_13667_cyto",
+             "utp" : "ID_14675_cyto",
+             "udp" : "ID_14335_cyto",
+             "gtp" : "ID_13710_cyto",
+             "gdp" : "ID_13815_cyto",
+             "nad" : "ID_13620_cyto",
+             "nadh" : "ID_13623_cyto",
+             "phos" : "ID_13652_cyto",
+             "pp" : "ID_13666_cyto",
+             "co2" : "ID_13640_cyto",
+             "h20" : "ID_13633_cyto",
+             "h" : "ID_13622_cyto",
+             "glc1p" : "ID_14180_cyto",
+             "udpglc" : "ID_15273_cyto",
+             "glyglc" : "ID_15924_cyto",
+             "glc" : "ID_14148_cyto",
+             "glc6p" : "ID_14102_cyto",
+             "fru6p" : "ID_14103_cyto",
+             "fru16bp" : "ID_13904_cyto",
+             "fru26bp" : "ID_14479_cyto",
+             "grap" : "ID_13727_cyto",
+             "dhap" : "ID_13973_cyto",
+             "bpg13" : "ID_14497_cyto",
+             "pg3" : "ID_14468_cyto",
+             "pg2" : "ID_14467_cyto",
+             "pep" : "ID_14341_cyto",
+             "pyr" : "ID_13917_cyto",
+             "oaa" : "ID_14191_cyto",
+             "lac" : "ID_15668_cyto",
+             "glc_ext" : "ID_14148_extern",
+             "lac_ext" : "ID_15668_extern",
+             "co2_mito" : "ID_13640_mito",
+             "phos_mito" : "ID_13652_mito",
+             "oaa_mito" : "ID_14191_mito",
+             "pep_mito" : "ID_14341_mito",
+             "acoa_mito" : "ID_13675_mito",
+             "pyr_mito" : "ID_13917_mito",
+             "cit_mito" : "ID_14112_mito",
+             "atp_mito" : "ID_13648_mito",
+             "adp_mito" : "ID_13653_mito",
+             "gtp_mito" : "ID_13710_mito",
+             "coa_mito" : "ID_13910_mito",
+             "nadh_mito" : "ID_13623_mito",
+             "nad_mito" : "ID_13620_mito",
+             "h20_mito" : "ID_13633_mito",
+             "h_mito" : "ID_13622_mito",
+             }
+            # reactions
+            r_map = {}
+GLUT2" : "ID_19899_pm
+GK" : "ID_17645_cyto
+G6PASE" : "ID_17695_cyto
+GPI" : "ID_17609_cyto
+G16PI" : "ID_20371_cyto
+UPGASE" : "ID_18627_cyto
+PPASE" : "ID_18123_cyto
+GS" : "ID_19252_cyto
+GP" : "ID_19256_cyto
+NDKGTP" : "ID_18783_cyto
+NDKUTP" : "ID_18741_cyto
+AK" : "ID_18668_cyto
+PFK2" : "ID_20390_cyto
+FBP2" : "ID_20364_cyto
+PFK1" : "ID_18688_cyto
+FBP1" : "ID_18113_cyto
+ALD" : "ID_17905_cyto
+TPI" : "ID_18806_cyto
+GAPDH" : "ID_18374_cyto
+PGK" : "ID_17950_cyto
+PGM" : "ID_17925_cyto
+EN" : "ID_18349_cyto
+PK" : "ID_19054_cyto
+PEPCK" : "ID_17808_cyto
+PEPCKM" : "ID_17808_mito
+PC" : "ID_18157_mito
+LDH" : "ID_19002_cyto
+LACT" : "ID_20156_pm
+PYRTM" : "ID_19868_mm
+PEPTM" : "ID_20065_mm
+PDH" : "ID_19260_mito
+CS" : "ID_17711_mito
+NDKGTPM" : "ID_18783_mito
+    
+    
 
 
 if __name__ == "__main__":

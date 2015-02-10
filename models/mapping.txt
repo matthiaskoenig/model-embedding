@@ -25,6 +25,9 @@
 # -> CITFLX (consumption of cit_mito) -> ID_17617_mito (cis-Aconitase)
 # => delete from kinetic
 
+# change order 
+[TPI, PGK, PGM, PK, LDH, LACT, CS]
+
 # compartments
 extern -> extern
 cyto -> cyto
