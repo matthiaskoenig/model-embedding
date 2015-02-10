@@ -2476,6 +2476,7 @@
       <reaction id="FBP2" name="D-Fructose-2,6-bisphosphate 2-phosphohydrolase" reversible="false" fast="false">
         <listOfReactants>
           <speciesReference species="fru26bp" stoichiometry="1" constant="true"/>
+	  <speciesReference species="h2o" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="fru6p" stoichiometry="1" constant="true"/>
@@ -2706,7 +2707,7 @@
           <speciesReference species="dhap" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="grap" stoichiometry="1" constant="true"/>
+	  <speciesReference species="grap" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
@@ -3014,6 +3015,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="pep" stoichiometry="1" constant="true"/>
+	  <speciesReference species="h2o" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
@@ -3390,6 +3392,7 @@
         <listOfReactants>
           <speciesReference species="pyr" stoichiometry="1" constant="true"/>
           <speciesReference species="nadh" stoichiometry="1" constant="true"/>
+	  <speciesReference species="h" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="lac" stoichiometry="1" constant="true"/>
@@ -3485,7 +3488,7 @@
           </math>
         </kineticLaw>
       </reaction>
-      <reaction id="LACT" name="Lactate transport (import)" reversible="true" fast="false">
+      <reaction id="LACT" name="Lactate transport" reversible="true" fast="false">
         <listOfReactants>
           <speciesReference species="lac_ext" stoichiometry="1" constant="true"/>
         </listOfReactants>
@@ -3538,9 +3541,11 @@
       <reaction id="PYRTM" name="Pyruvate transport (mito)" reversible="true" fast="false">
         <listOfReactants>
           <speciesReference species="pyr" stoichiometry="1" constant="true"/>
+          <speciesReference species="h" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="pyr_mito" stoichiometry="1" constant="true"/>
+          <speciesReference species="h_mito" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">

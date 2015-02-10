@@ -1,5 +1,30 @@
 # id mapping GlucoNet -> HepatoCore
 
+## Missing substrates/products 
+# Addition of substrates/product (no problem, all set constant in kinetic network)
+# -> kinetic FBP2 : h2o as substrate added
+# -> kinetic EN : h2o as product added
+# -> kinetic LDH : h added to nadh side
+# -> kinetic PYRTM : h added to pyr side, h_mito added to pyr_mito side
+
+## Change of reaction order
+# General problem is the definition in wrong order between the models 
+# This will create problems in kinetic network, but not FBA if changed:
+# -> HepatoCore TPI : changed order (dhap <-> grap) <- (grap <-> dhap)
+# -> HepatoCore PGK : changed order (adp + bgp13 <-> atp + pg3) <- (atp + pg3 <-> adp + bgp13)
+# -> HepatoCore PGM : changed order (pg3 <-> pg2) <- (pg2 <-> pg3)
+# -> HepatoCore PK :  changed order (pep + adp <-> pyr + atp) <- (pyr + atp <-> pep + atp)
+# -> HepatoCore LDH : changed order (pyr + nadh + h <-> lac + nad) <- (lac + nad <-> pyr + nadh + h)
+# -> HepatoCore LACT : changed order (lac_ext <-> lac) <- (lac <-> lac_ext)
+# -> HepatoCore CS : changed order (cit_mito + coa_mito <-> acoa_mito + oaa_mito + h2o_mito) <- (acoa_mito + oaa_mito + h2o_mito <-> cit_mito + coa_mito)
+
+# Fluxes which have to be replaced, these are all 0 in the basic
+# kinetic network, so could just be dropped
+# -> OAAFLX (production of oaa_mito) -> ID_18170_mito (Malate Dehydrogenase)
+# -> ACOAFLX (consumption of acoa_mito) -> ?
+# -> CITFLX (consumption of cit_mito) -> ID_17617_mito (cis-Aconitase)
+# => delete from kinetic
+
 # compartments
 extern -> extern
 cyto -> cyto
@@ -67,6 +92,25 @@ GS -> ID_19252_cyto
 GP -> ID_19256_cyto
 NDKGTP -> ID_18783_cyto
 NDKUTP -> ID_18741_cyto
-AK
-
-
+AK -> ID_18668_cyto
+PFK2 -> ID_20390_cyto
+FBP2 -> ID_20364_cyto
+PFK1 -> ID_18688_cyto
+FBP1 -> ID_18113_cyto
+ALD -> ID_17905_cyto
+TPI -> ID_18806_cyto
+GAPDH -> ID_18374_cyto
+PGK -> ID_17950_cyto
+PGM -> ID_17925_cyto
+EN -> ID_18349_cyto
+PK -> ID_19054_cyto
+PEPCK -> ID_17808_cyto
+PEPCKM -> ID_17808_mito
+PC -> ID_18157_mito
+LDH -> ID_19002_cyto
+LACT -> ID_20156_pm
+PYRTM -> ID_19868_mm
+PEPTM -> ID_20065_mm
+PDH -> ID_19260_mito
+CS -> ID_17711_mito
+NDKGTPM -> ID_18783_mito
