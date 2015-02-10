@@ -158,24 +158,36 @@ def clone_and_fix_hepatocore():
             s.setSpecies(replace_cid_in_string(s_old.getSpecies()))
             s.setStoichiometry(s_old.getStoichiometry())
         
-    writeSBMLToFile(doc, '{}/{}.xml'.format(sbml_dir, mid) );
-    return m
+    writeSBMLToFile(doc, '{}/{}.xml'.format(sbml_dir, mid) )
+    return doc
 
-def hepatocore_gluconet_mapping(m):
+def reverse_dict(d):
+    drev = {}
+    for key, value in d.iteritems():
+        if drev.has_key(value):
+            print key, 'already in dict'
+        else:
+            drev[value] = key
+    return drev
+
+def hepatocore_gluconet_mapping(doc):
     '''
     Performs the unification of the models
     i.e. mapping of 
     '''
     # reorder substrates and products
     reorder = ["TPI", "PGK", "PGM", "PK", "LDH", "LACT", "CS"]
+    
     # compartments
-    c_map = {
-             "extern" : "extern",
-             "cyto" : "cyto",
-             "mito" : "mito",
-             }
+    # c_G2H = {
+    #         "extern" : "extern",
+    #         "cyto" : "cyto",
+    #         "mito" : "mito",
+    #         }
+    # c_H2G = reverse_dict(c_G2H)
+    
     # species
-    s_map = {
+    s_G2H = {
              "atp" : "ID_13648_cyto",
              "adp" : "ID_13653_cyto",
              "amp" : "ID_13667_cyto",
@@ -224,49 +236,119 @@ def hepatocore_gluconet_mapping(m):
              "nad_mito" : "ID_13620_mito",
              "h20_mito" : "ID_13633_mito",
              "h_mito" : "ID_13622_mito",
-             }
-            # reactions
-            r_map = {}
-GLUT2" : "ID_19899_pm
-GK" : "ID_17645_cyto
-G6PASE" : "ID_17695_cyto
-GPI" : "ID_17609_cyto
-G16PI" : "ID_20371_cyto
-UPGASE" : "ID_18627_cyto
-PPASE" : "ID_18123_cyto
-GS" : "ID_19252_cyto
-GP" : "ID_19256_cyto
-NDKGTP" : "ID_18783_cyto
-NDKUTP" : "ID_18741_cyto
-AK" : "ID_18668_cyto
-PFK2" : "ID_20390_cyto
-FBP2" : "ID_20364_cyto
-PFK1" : "ID_18688_cyto
-FBP1" : "ID_18113_cyto
-ALD" : "ID_17905_cyto
-TPI" : "ID_18806_cyto
-GAPDH" : "ID_18374_cyto
-PGK" : "ID_17950_cyto
-PGM" : "ID_17925_cyto
-EN" : "ID_18349_cyto
-PK" : "ID_19054_cyto
-PEPCK" : "ID_17808_cyto
-PEPCKM" : "ID_17808_mito
-PC" : "ID_18157_mito
-LDH" : "ID_19002_cyto
-LACT" : "ID_20156_pm
-PYRTM" : "ID_19868_mm
-PEPTM" : "ID_20065_mm
-PDH" : "ID_19260_mito
-CS" : "ID_17711_mito
-NDKGTPM" : "ID_18783_mito
+    }
+    s_H2G = reverse_dict(s_G2H)
+    # reactions
+    r_G2H = {
+             "GLUT2" : "ID_19899_pm",
+             "GK" : "ID_17645_cyto",
+             "G6PASE" : "ID_17695_cyto",
+             "GPI" : "ID_17609_cyto",
+             "G16PI" : "ID_20371_cyto",
+             "UPGASE" : "ID_18627_cyto",
+             "PPASE" : "ID_18123_cyto",
+             "GS" : "ID_19252_cyto",
+             "GP" : "ID_19256_cyto",
+             "NDKGTP" : "ID_18783_cyto",
+             "NDKUTP" : "ID_18741_cyto",
+             "AK" : "ID_18668_cyto",
+             "PFK2" : "ID_20390_cyto",
+             "FBP2" : "ID_20364_cyto",
+             "PFK1" : "ID_18688_cyto",
+             "FBP1" : "ID_18113_cyto",
+             "ALD" : "ID_17905_cyto",
+             "TPI" : "ID_18806_cyto",
+             "GAPDH" : "ID_18374_cyto",
+             "PGK" : "ID_17950_cyto",
+             "PGM" : "ID_17925_cyto",
+             "EN" : "ID_18349_cyto",
+             "PK" : "ID_19054_cyto",
+             "PEPCK" : "ID_17808_cyto",
+             "PEPCKM" : "ID_17808_mito",
+             "PC" : "ID_18157_mito",
+             "LDH" : "ID_19002_cyto",
+             "LACT" : "ID_20156_pm",
+             "PYRTM" : "ID_19868_mm",
+             "PEPTM" : "ID_20065_mm",
+             "PDH" : "ID_19260_mito",
+             "CS" : "ID_17711_mito",
+             "NDKGTPM" : "ID_18783_mito",
+    }
+    r_H2G = reverse_dict(r_G2H)
+    version = 2
+    mid = 'HepatoCore2_mapped_v{}'.format(version)
+    m = doc.getModel()
+    m.setId(mid)
     
+    # Remap the species
+    for s in m.getListOfSpecies():
+        sid = s.getId()
+        # replace id if in subnetwork
+        if sid in s_H2G.iterkeys():
+            s.setId(s_H2G[sid])
+        
+    # Remap the reactions & reactants/products
+    for r in m.getListOfReactions():
+        rid = r.getId()
+        # replace id if in subnetwork
+        if rid in r_H2G.iterkeys():
+            r.setId(r_H2G[rid])
+    
+        # substrates
+        for s in r.getListOfReactants():
+            sid = s.getSpecies()
+            if sid in s_H2G.iterkeys():
+                s.setSpecies(s_H2G[sid])
+    
+        # products
+        for s in r.getListOfProducts():
+            sid = s.getSpecies()
+            if sid in s_H2G.iterkeys():
+                s.setSpecies(s_H2G[sid])
+        
+    # Interchange substrates & products for some reactions
+
+    for rid in reorder:
+        print 'Reorder: ', rid
+        r_old = m.getReaction(rid)
+        
+        r_old.setId('{}_old'.format(rid))
+        
+        # Create new
+        r = m.createReaction()
+        r.setId(rid)
+        r.setName(r_old.getName())
+        r.setCompartment(r_old.getCompartment())
+        
+        # Copy reactants & products
+        for s_old in r_old.getListOfReactants():
+            s = r.createProduct()
+            s.setSpecies(s_old.getSpecies())
+            s.setStoichiometry(s_old.getStoichiometry())
+        for s_old in r_old.getListOfProducts():
+            s = r.createReactant()
+            s.setSpecies(s_old.getSpecies())
+            s.setStoichiometry(s_old.getStoichiometry())
+        # Remove old        
+        m.removeReaction(r_old.getId())
+            
+    fname = '{}/{}.xml'.format(sbml_dir, mid)
+    print fname
+    writeSBMLToFile(doc, fname)
+    return doc
+    
+    
+    
+    
+    writeSBMLToFile(doc, '{}/{}.xml'.format(sbml_dir, mid) );
+    return doc
     
 
 
 if __name__ == "__main__":
     # Do all the replacements to the model
-    m2 = clone_and_fix_hepatocore()
+    doc = clone_and_fix_hepatocore()
+    hepatocore_gluconet_mapping(doc)
     exit() 
     
     print '# HepatoCore #'
