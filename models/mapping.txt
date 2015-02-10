@@ -1,0 +1,72 @@
+# id mapping GlucoNet -> HepatoCore
+
+# compartments
+extern -> extern
+cyto -> cyto
+mito -> mito
+
+# species
+atp -> ID_13648_cyto
+adp -> ID_13653_cyto
+amp -> ID_13667_cyto
+utp -> ID_14675_cyto
+udp -> ID_14335_cyto
+gtp -> ID_13710_cyto
+gdp -> ID_13815_cyto
+nad -> ID_13620_cyto
+nadh -> ID_13623_cyto
+phos -> ID_13652_cyto
+pp -> ID_13666_cyto
+co2 -> ID_13640_cyto
+h20 -> ID_13633_cyto
+h -> ID_13622_cyto
+glc1p -> ID_14180_cyto
+udpglc -> ID_15273_cyto
+glyglc -> ID_15924_cyto
+glc -> ID_14148_cyto
+glc6p -> ID_14102_cyto
+fru6p -> ID_14103_cyto
+fru16bp -> ID_13904_cyto
+fru26bp -> ID_14479_cyto
+grap -> ID_13727_cyto
+dhap -> ID_13973_cyto
+bpg13 -> ID_14497_cyto
+pg3 -> ID_14468_cyto
+pg2 -> ID_14467_cyto
+pep -> ID_14341_cyto
+pyr -> ID_13917_cyto
+oaa -> ID_14191_cyto
+lac -> ID_15668_cyto
+glc_ext -> ID_14148_extern
+lac_ext -> ID_15668_extern
+co2_mito -> ID_13640_mito
+phos_mito -> ID_13652_mito
+oaa_mito -> ID_14191_mito
+pep_mito -> ID_14341_mito
+acoa_mito -> ID_13675_mito
+pyr_mito -> ID_13917_mito
+cit_mito -> ID_14112_mito
+atp_mito -> ID_13648_mito
+adp_mito -> ID_13653_mito
+gtp_mito -> ID_13710_mito
+coa_mito -> ID_13910_mito
+nadh_mito -> ID_13623_mito
+nad_mito -> ID_13620_mito
+h20_mito -> ID_13633_mito
+h_mito -> ID_13622_mito
+
+# reactions
+GLUT2 -> ID_19899_pm
+GK -> ID_17645_cyto
+G6PASE -> ID_17695_cyto
+GPI -> ID_17609_cyto
+G16PI -> ID_20371_cyto
+UPGASE -> ID_18627_cyto
+PPASE -> ID_18123_cyto
+GS -> ID_19252_cyto
+GP -> ID_19256_cyto
+NDKGTP -> ID_18783_cyto
+NDKUTP -> ID_18741_cyto
+AK
+
+
