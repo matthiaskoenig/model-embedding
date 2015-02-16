@@ -5824,6 +5824,7 @@ simulator.roadrunner_tools.galactose_challenge|/home/mkoenig/multiscale-galactos
 simulator.roadrunner_tools.galactose_dilution|/home/mkoenig/multiscale-galactose/python/simulator/simulator/roadrunner_tools/galactose_dilution.py
 simulator.roadrunner_tools.galactose_dilution_flux|/home/mkoenig/multiscale-galactose/python/simulator/simulator/roadrunner_tools/galactose_dilution_flux.py
 simulator.roadrunner_tools.galactose_functions|/home/mkoenig/multiscale-galactose/python/simulator/simulator/roadrunner_tools/galactose_functions.py
+simulator.roadrunner_tools.galactose_settings|/home/mkoenig/multiscale-galactose/python/simulator/simulator/roadrunner_tools/galactose_settings.py
 simulator.roadrunner_tools.roadrunner_plots|/home/mkoenig/multiscale-galactose/python/simulator/simulator/roadrunner_tools/roadrunner_plots.py
 simulator.roadrunner_tools.roadrunner_tools|/home/mkoenig/multiscale-galactose/python/simulator/simulator/roadrunner_tools/roadrunner_tools.py
 simulator.spyder.__init__|/home/mkoenig/multiscale-galactose/python/simulator/simulator/spyder/__init__.py

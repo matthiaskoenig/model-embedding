@@ -21,9 +21,10 @@ hepatocore id <->
 @date: 2015-02-09
 '''
 #######################################################################
-sbml_dir = "../data"
-gluconet = "{}/GlucoNet.xml".format(sbml_dir)
-hepatocore = "{}/HepatoCore.xml".format(sbml_dir)
+SBML_DIR = "../data"
+VERSION = 3
+gluconet = "{}/GlucoNet.xml".format(SBML_DIR)
+hepatocore = "{}/HepatoCore.xml".format(SBML_DIR)
 #######################################################################
 # Definition of compartments 
 comps_dict = [
@@ -90,8 +91,7 @@ def clone_and_fix_hepatocore():
         * Compartment mapping
         * Fix compartment part of ID 
     '''
-    version = 2
-    mid = 'HepatoCore2_v{}'.format(version)
+    mid = 'HepatoCore2_v{}'.format(VERSION)
     # read the original model
     doc_old = readSBML(hepatocore)
     m_old = doc_old.getModel()
@@ -106,6 +106,7 @@ def clone_and_fix_hepatocore():
         c = m.createCompartment()
         c.setId(cinfo['id'])
         c.setName(cinfo['name'])
+        c.setConstant(True)
     
     # Create the species
     for s_old in m_old.getListOfSpecies():
@@ -124,6 +125,7 @@ def clone_and_fix_hepatocore():
         if name:
             name = remove_cid_from_name(name)
             s.setName(name)
+        s.setHasOnlySubstanceUnits(True)
      
     # Create the reactions
     for r_old in m_old.getListOfReactions():
@@ -137,6 +139,8 @@ def clone_and_fix_hepatocore():
         cid = replace_cid_in_string(cid)
         r.setId(rid)
         r.setCompartment(cid)
+        r.setFast(False)
+        r.setReversible(True)
         name = r_old.getName()
         if name:
             name = remove_cid_from_name(name)
@@ -149,6 +153,7 @@ def clone_and_fix_hepatocore():
             s = r.createReactant()
             s.setSpecies(replace_cid_in_string(s_old.getSpecies()))
             s.setStoichiometry(s_old.getStoichiometry())
+            s.setConstant(False)
         
         # products
         print 'products:'
@@ -157,8 +162,9 @@ def clone_and_fix_hepatocore():
             s = r.createProduct()
             s.setSpecies(replace_cid_in_string(s_old.getSpecies()))
             s.setStoichiometry(s_old.getStoichiometry())
+            s.setConstant(False)
         
-    writeSBMLToFile(doc, '{}/{}.xml'.format(sbml_dir, mid) )
+    writeSBMLToFile(doc, '{}/{}.xml'.format(SBML_DIR, mid) )
     return doc
 
 def reverse_dict(d):
@@ -275,9 +281,9 @@ def hepatocore_gluconet_mapping(doc):
              "NDKGTPM" : "ID_18783_mito",
     }
     r_H2G = reverse_dict(r_G2H)
-    version = 2
-    mid = 'HepatoCore2_mapped_v{}'.format(version)
+    
     m = doc.getModel()
+    mid = 'HepatoCore2_mapped_v{}'.format(VERSION)
     m.setId(mid)
     
     # Remap the species
@@ -319,36 +325,86 @@ def hepatocore_gluconet_mapping(doc):
         r.setId(rid)
         r.setName(r_old.getName())
         r.setCompartment(r_old.getCompartment())
+        r.setReversible(False)
+        r.setFast(False)
         
         # Copy reactants & products
         for s_old in r_old.getListOfReactants():
             s = r.createProduct()
             s.setSpecies(s_old.getSpecies())
             s.setStoichiometry(s_old.getStoichiometry())
+            s.setConstant(False)
         for s_old in r_old.getListOfProducts():
             s = r.createReactant()
             s.setSpecies(s_old.getSpecies())
             s.setStoichiometry(s_old.getStoichiometry())
+            s.setConstant(False)
         # Remove old        
         m.removeReaction(r_old.getId())
             
-    fname = '{}/{}.xml'.format(sbml_dir, mid)
+    fname = '{}/{}.xml'.format(SBML_DIR, mid)
     print fname
     writeSBMLToFile(doc, fname)
     return doc
     
     
+def hepatocore_boundary_conditions(doc):
+    boundary = [
+    "ID_13886_extern",
+    "ID_15523_extern",
+    "ID_13809_extern",
+    "ID_13810_extern",
+    "ID_13832_extern",
+    "ID_15668_extern",
+    "ID_14035_extern",
+    "ID_13640_extern",
+    "ID_13638_extern",
+    "ID_14148_extern",
+    "ID_15924_cyto",
+    "ID_14250_extern",
+    "ID_14614_extern",
+    "ID_14028_extern",
+    "ID_13868_extern",
+    "ID_14082_extern",
+    "ID_15249_extern",
+    "ID_13695_extern",
+    "ID_14832_extern",
+    "ID_14958_extern",
+    "ID_13649_extern",
+    "ID_13885_extern",
+    "ID_13663_extern",
+    "ID_13795_extern",
+    "ID_13704_extern",
+    "ID_13787_extern",
+    "ID_13781_extern",
+    "ID_14131_extern",
+    "ID_14215_extern",
+    "ID_15065_extern",
+    "ID_14072_extern",
+    "ID_13649_extern",
+    "ID_13650_extern"
+    ]
+    m = doc.getModel()
+    mid = m.getId()
+    for s in m.getListOfSpecies():
+        sid = s.getId()
+        # replace id if in subnetwork
+        s.setConstant(False)
+        if sid in boundary:
+            s.setBoundaryCondition(True)
+            print sid, 'boundaryCondition'
+        else:
+            s.setBoundaryCondition(False)
     
-    
-    writeSBMLToFile(doc, '{}/{}.xml'.format(sbml_dir, mid) );
-    return doc
-    
-
+    writeSBMLToFile(doc, '{}/{}_exchange.xml'.format(SBML_DIR, mid) );
 
 if __name__ == "__main__":
     # Do all the replacements to the model
     doc = clone_and_fix_hepatocore()
-    hepatocore_gluconet_mapping(doc)
+    # apply the mapping
+    doc = hepatocore_gluconet_mapping(doc)
+    # set the boundary conditions
+    doc = hepatocore_boundary_conditions(doc)
     exit() 
     
     print '# HepatoCore #'

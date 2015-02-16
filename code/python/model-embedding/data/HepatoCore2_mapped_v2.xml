@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
-  <model id="HepatoCore2_mapped_v2" name="HepatoCore2_v2">
+  <model id="HepatoCore2_mapped_v2" name="HepatoCore2_v3">
     <listOfCompartments>
       <compartment id="extern" name="extern"/>
       <compartment id="pm" name="plasma membrane"/>
