@@ -184,17 +184,18 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_8ysVQLBAEeSOzIATziadVA" elementId="org.eclipse.ui.editorss" selectedElement="_8ys8ULBAEeSOzIATziadVA">
-      <children xsi:type="basic:PartStack" xmi:id="_8ys8ULBAEeSOzIATziadVA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_Gw6ZYLEnEeSIq42Lmh3FUw">
+      <children xsi:type="basic:PartStack" xmi:id="_8ys8ULBAEeSOzIATziadVA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_qOiBELBBEeSoBv9lmi1Rsg">
         <tags>newtablook</tags>
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
-        <tags>noFocus</tags>
         <children xsi:type="basic:Part" xmi:id="_qOiBELBBEeSoBv9lmi1Rsg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ModelDictionary" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;ModelDictionary.py&quot; partName=&quot;ModelDictionary&quot; title=&quot;ModelDictionary&quot; tooltip=&quot;model-embedding/embedding/ModelDictionary.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/model-embedding/embedding/ModelDictionary.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;261&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.python.pydev.editor.PythonEditor</tags>
           <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_o-gHILBCEeSoBv9lmi1Rsg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="TransformHepatoCore" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;TransformHepatoCore.py&quot; partName=&quot;TransformHepatoCore&quot; title=&quot;TransformHepatoCore&quot; tooltip=&quot;model-embedding/embedding/TransformHepatoCore.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/model-embedding/embedding/TransformHepatoCore.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;10293&quot; selectionTopPixel=&quot;5237&quot;/>&#xA;&lt;/editor>"/>
@@ -213,14 +214,6 @@
           <tags>Editor</tags>
           <tags>org.python.pydev.editor.PythonEditor</tags>
           <tags>removeOnHide</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_Gw6ZYLEnEeSIq42Lmh3FUw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="HepatoCore2_mapped_v2.xml" iconURI="platform:/plugin/org.eclipse.wst.xml.ui/icons/xmldoc.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;HepatoCore2_mapped_v2.xml&quot; partName=&quot;HepatoCore2_mapped_v2.xml&quot; title=&quot;HepatoCore2_mapped_v2.xml&quot; tooltip=&quot;model-embedding/data/HepatoCore2_mapped_v2.xml&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/model-embedding/data/HepatoCore2_mapped_v2.xml&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart</tags>
-          <tags>removeOnHide</tags>
-          <tags>active</tags>
-          <tags>activeOnClose</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_ReeCELYmEeSdpePy44DONg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="HepatoCore2_mapped_v3_exchange.xml" iconURI="platform:/plugin/org.eclipse.ui.editors/icons/full/obj16/file_obj.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;HepatoCore2_mapped_v3_exchange.xml&quot; partName=&quot;HepatoCore2_mapped_v3_exchange.xml&quot; title=&quot;HepatoCore2_mapped_v3_exchange.xml&quot; tooltip=&quot;model-embedding/data/HepatoCore2_mapped_v3_exchange.xml&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/model-embedding/data/HepatoCore2_mapped_v3_exchange.xml&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;764&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
@@ -335,7 +328,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_8oepULBAEeSOzIATziadVA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_RpcDULYjEeSdpePy44DONg" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_8H2ojLBAEeSOzIATziadVA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_YhXOkLpvEeSXzr32I725pg" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_8H2ojLBAEeSOzIATziadVA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_8ofQYLBAEeSOzIATziadVA" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -362,7 +355,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_8ogegLBAEeSOzIATziadVA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Rpj_IrYjEeSdpePy44DONg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_8HomILBAEeSOzIATziadVA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_YhdVMLpvEeSXzr32I725pg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_8HomILBAEeSOzIATziadVA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_8ogegbBAEeSOzIATziadVA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>

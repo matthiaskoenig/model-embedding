@@ -1,1 +1,6 @@
-DELSTRembedding.TransformHepatoCore
+INSTUPembedding.ModelDictionary
+/home/mkoenig/model-embedding/code/python/model-embedding/embedding/ModelDictionary.py
+INFOS:&&3|1|2|0&&3|3|2|0
+hepatocore=3
+gluconet=1
+embedding.ModelDictionary=2
